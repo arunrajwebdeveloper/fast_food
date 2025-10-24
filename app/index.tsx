@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import images from "@/constants";
+import CartButton from "@/components/CartButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   return (
@@ -28,15 +29,8 @@ export default function Index() {
             />
           </TouchableOpacity>
         </View>
-        <View>
-          <TouchableOpacity className="flex-row justify-center items-center gap-x-1 w-10 h-10">
-            <Image
-              source={images.bag}
-              resizeMode="contain"
-              className="size-8"
-            />
-          </TouchableOpacity>
-        </View>
+
+        <CartButton />
       </View>
 
       <FlatList
@@ -80,6 +74,7 @@ export default function Index() {
             </View>
           );
         }}
+        keyExtractor={(item) => item.id?.toString()}
         contentContainerClassName="pb-28 px-4"
         // IF NEEDED A FLATLIST HEADER TEXT
         ListHeaderComponent={() => (
