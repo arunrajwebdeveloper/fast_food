@@ -1,9 +1,13 @@
 import arrowDownFill from "@/assets/icons/down-arrow-fill.png";
+import home from "@/assets/icons/home.png";
+import magnifer from "@/assets/icons/magnifer.png";
 import bag from "@/assets/icons/bag.png";
+import user from "@/assets/icons/user.png";
 
 import burger from "@/assets/images/burger.png";
 import pasta from "@/assets/images/pasta.png";
 import pizza from "@/assets/images/pizza.png";
+import authBg from "@/assets/images/auth-bg.jpg";
 
 export const offers = [
   {
@@ -47,4 +51,8 @@ export const offers = [
 export default {
   arrowDownFill,
   bag,
+  home,
+  magnifer,
+  user,
+  authBg,
 };

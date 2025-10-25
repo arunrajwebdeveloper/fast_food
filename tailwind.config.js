@@ -8,7 +8,6 @@ module.exports = {
         primary: "#FE8C00",
         white: {
           DEFAULT: "#FFFFFF",
-          100: "#FAFAFA",
         },
         gray: {
           100: "#878787",
