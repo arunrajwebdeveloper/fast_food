@@ -1,5 +1,13 @@
 import { CreateUserParams, SignInParams } from "@/type";
-import { Account, Avatars, Client, Databases, ID } from "react-native-appwrite";
+import {
+  Account,
+  Avatars,
+  Client,
+  Databases,
+  ID,
+  Query,
+  TablesDB,
+} from "react-native-appwrite";
 
 export const appwriteConfig = {
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
@@ -17,7 +25,8 @@ client
   .setPlatform(appwriteConfig.platform);
 
 export const account = new Account(client);
-export const databases = new Databases(client);
+export const tablesDB = new TablesDB(client);
+
 const avatars = new Avatars(client);
 
 export const createUser = async ({
@@ -26,12 +35,12 @@ export const createUser = async ({
   password,
 }: CreateUserParams) => {
   try {
-    const newAccount = await account.create(
-      ID.unique().toString(),
+    const newAccount = await account.create({
+      userId: ID.unique().toString(),
       email,
       password,
-      name
-    );
+      name,
+    });
 
     if (!newAccount) throw Error;
 
@@ -39,17 +48,17 @@ export const createUser = async ({
 
     const avatarUrl = avatars.getInitialsURL(name);
 
-    return await databases.createDocument(
-      appwriteConfig.databaseId,
-      appwriteConfig.userCollection,
-      ID.unique().toString(),
-      {
+    return await tablesDB.createRow({
+      databaseId: appwriteConfig.databaseId,
+      tableId: appwriteConfig.userCollection,
+      rowId: ID.unique(),
+      data: {
         email,
         name,
         accountId: newAccount.$id,
         avatar: avatarUrl,
-      }
-    );
+      },
+    });
   } catch (err) {
     throw new Error(err as string);
   }
@@ -57,7 +66,30 @@ export const createUser = async ({
 
 export const signIn = async ({ email, password }: SignInParams) => {
   try {
-    const session = await account.createEmailPasswordSession(email, password);
+    const session = await account.createEmailPasswordSession({
+      email,
+      password,
+    });
+  } catch (err) {
+    throw new Error(err as string);
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const currentAccount = await account.get();
+
+    if (!currentAccount) throw Error;
+
+    const currentUser = await tablesDB.listRows({
+      databaseId: appwriteConfig.databaseId,
+      tableId: appwriteConfig.userCollection,
+      queries: [Query.equal("accountId", currentAccount.$id)],
+    });
+
+    if (!currentUser) throw Error;
+
+    return currentUser.rows[0];
   } catch (err) {
     throw new Error(err as string);
   }
