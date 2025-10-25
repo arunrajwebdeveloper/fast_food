@@ -20,7 +20,7 @@ const _layout = () => {
       >
         <View
           className="w-full relative"
-          style={{ height: Dimensions.get("screen").height / 3 }}
+          style={{ height: Dimensions.get("screen").height / 2.8 }}
         >
           <ImageBackground
             source={images.authBg}
