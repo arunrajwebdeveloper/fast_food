@@ -3,7 +3,7 @@ import CustomInput from "@/components/CustomInput";
 import { signIn } from "@/lib/appwrite";
 import { Link, router } from "expo-router";
 import { useState } from "react";
-import { View, Text, Button, Alert } from "react-native";
+import { View, Text, Alert } from "react-native";
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);

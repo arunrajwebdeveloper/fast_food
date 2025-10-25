@@ -1,4 +1,3 @@
-import React from "react";
 import { Redirect, Slot } from "expo-router";
 
 const _layout = () => {
