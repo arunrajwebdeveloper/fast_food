@@ -25,7 +25,7 @@ const _layout = () => {
           <ImageBackground
             source={images.authBg}
             className="size-full rounded-b-3xl absolute overflow-hidden z-10"
-            resizeMode="stretch"
+            resizeMode="cover"
           />
         </View>
         <Slot />
