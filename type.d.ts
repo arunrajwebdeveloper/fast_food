@@ -27,4 +27,18 @@ interface SignInParams {
   password: string;
 }
 
-export { CustomInputProps, CustomButtonProps, CreateUserParams, SignInParams };
+interface User {
+  name: string;
+  email: string;
+  accountId: string;
+  avatar: string;
+  id: string;
+}
+
+export {
+  CustomInputProps,
+  CustomButtonProps,
+  CreateUserParams,
+  SignInParams,
+  User,
+};

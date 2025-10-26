@@ -13,8 +13,11 @@ import {
 import images from "@/constants";
 import CartButton from "@/components/CartButton";
 import { SafeAreaView } from "react-native-safe-area-context";
+import useAuthStore from "@/store/auth.store";
 
 export default function Index() {
+  const { user } = useAuthStore();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row justify-between items-center px-4 py-4">
@@ -79,13 +82,13 @@ export default function Index() {
         keyExtractor={(item) => item.id?.toString()}
         contentContainerClassName="pb-28 px-4"
         // IF NEEDED A FLATLIST HEADER TEXT
-        ListHeaderComponent={() => (
-          <View className="items-center py-2 px-4">
-            <Text className="font-quicksand-bold text-black text-2xl">
-              Latest Offers
-            </Text>
-          </View>
-        )}
+        // ListHeaderComponent={() => (
+        //   <View className="items-center py-2 px-4">
+        //     <Text className="font-quicksand-bold text-black text-2xl">
+        //       Latest Offers
+        //     </Text>
+        //   </View>
+        // )}
       />
     </SafeAreaView>
   );

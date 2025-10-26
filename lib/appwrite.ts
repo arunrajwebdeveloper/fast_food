@@ -1,4 +1,4 @@
-import { CreateUserParams, SignInParams } from "@/type";
+import { CreateUserParams, SignInParams, User } from "@/type";
 import {
   Account,
   Avatars,
@@ -87,7 +87,6 @@ export const getCurrentUser = async () => {
     });
 
     if (!currentUser) throw Error;
-
     return currentUser.rows[0];
   } catch (err) {
     throw new Error(err as string);
