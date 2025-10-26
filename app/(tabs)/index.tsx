@@ -1,8 +1,6 @@
-import * as Sentry from "@sentry/react-native";
 import { offers } from "@/constants";
 import cn from "clsx";
 import {
-  Button,
   FlatList,
   Image,
   Pressable,
@@ -80,7 +78,7 @@ export default function Index() {
           );
         }}
         keyExtractor={(item) => item.id?.toString()}
-        contentContainerClassName="pb-28 px-4"
+        contentContainerClassName="pb-24 px-4"
         // IF NEEDED A FLATLIST HEADER TEXT
         // ListHeaderComponent={() => (
         //   <View className="items-center py-2 px-4">
