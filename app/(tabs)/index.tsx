@@ -69,8 +69,8 @@ export default function Index() {
                       <Text className="font-quicksand-bold uppercase text-white mb-2 text-2xl">
                         {item.title}
                       </Text>
-                      <Text className="font-quicksand-bold leading-tight text-white text-xl">
-                        From $20
+                      <Text className="font-quicksand-bold leading-tight text-white text-lg">
+                        {item.caption}
                       </Text>
                     </View>
                   </>
