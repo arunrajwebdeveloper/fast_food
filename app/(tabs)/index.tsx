@@ -1,6 +1,8 @@
+import * as Sentry from "@sentry/react-native";
 import { offers } from "@/constants";
 import cn from "clsx";
 import {
+  Button,
   FlatList,
   Image,
   Pressable,
