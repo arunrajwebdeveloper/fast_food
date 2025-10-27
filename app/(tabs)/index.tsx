@@ -11,12 +11,9 @@ import {
 import images from "@/constants";
 import CartButton from "@/components/CartButton";
 import { SafeAreaView } from "react-native-safe-area-context";
-import useAuthStore from "@/store/auth.store";
 import { router } from "expo-router";
 
 export default function Index() {
-  const { user } = useAuthStore();
-
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex-row flex-between items-center px-5 my-5">

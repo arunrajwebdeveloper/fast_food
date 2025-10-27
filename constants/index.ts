@@ -12,7 +12,7 @@ import pasta from "@/assets/images/pasta.png";
 import pizza from "@/assets/images/pizza.png";
 import sushi from "@/assets/images/sushi.png";
 import taco from "@/assets/images/taco.png";
-import donut from "@/assets/images/donut.png";
+import salad from "@/assets/images/salad.png";
 import authBg from "@/assets/images/auth-bg.jpg";
 
 export const offers = [
@@ -53,9 +53,9 @@ export const offers = [
   },
   {
     id: 6,
-    title: "Dessert Delight Offer",
-    color: "#5c1f8a",
-    image: donut,
+    title: "Special Salad Offer",
+    color: "#85a622",
+    image: salad,
     caption: "From $10",
   },
 ];

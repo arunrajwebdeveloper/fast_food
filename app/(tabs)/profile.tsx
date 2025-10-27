@@ -1,10 +1,48 @@
-import { View, Text } from "react-native";
+import CustomButton from "@/components/CustomButton";
+import CustomHeader from "@/components/CustomHeader";
+import useAuthStore from "@/store/auth.store";
+import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const profile = () => {
+  const { user, isLoading } = useAuthStore();
+
+  console.log("user :>> ", user);
+
+  if (isLoading) return <Text>Loading...</Text>;
+
   return (
     <SafeAreaView className="h-full bg-white">
-      <Text>profile</Text>
+      <View className="h-full px-5 pt-5">
+        <CustomHeader title="My Profile" />
+        <ScrollView>
+          <View className="flex-1 items-center">
+            <Image
+              source={{ uri: user?.avatar }}
+              className="size-44 rounded-full"
+              resizeMode="contain"
+            />
+
+            <View className="mt-10 items-center">
+              <Text className="font-quicksand-bold text-black text-3xl mb-1">
+                {user?.name}
+              </Text>
+              <Text className="font-quicksand-medium text-gray-700 text-lg">
+                {user?.email}
+              </Text>
+
+              <TouchableOpacity
+                onPress={() => {}}
+                className="mt-10 bg-red-100 w-full px-4 py-2 rounded-xl"
+              >
+                <Text className="text-red-700 font-quicksand-bold text-lg">
+                  SignOut
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
