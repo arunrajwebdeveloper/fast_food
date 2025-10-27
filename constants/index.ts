@@ -7,56 +7,54 @@ import arrowBack from "@/assets/icons/arrow-left.png";
 import minus from "@/assets/icons/minus.png";
 import plus from "@/assets/icons/plus.png";
 import trash from "@/assets/icons/trash.png";
-
 import burger from "@/assets/images/burger.png";
 import pasta from "@/assets/images/pasta.png";
 import pizza from "@/assets/images/pizza.png";
 import sushi from "@/assets/images/sushi.png";
 import taco from "@/assets/images/taco.png";
 import donut from "@/assets/images/donut.png";
-
 import authBg from "@/assets/images/auth-bg.jpg";
 
 export const offers = [
   {
     id: 1,
     title: "Pizza Fiesta Combo",
-    color: "#c72d13", // bright coral red
+    color: "#c72d13",
     image: pizza,
     caption: "12 Slice",
   },
   {
     id: 2,
     title: "Burger Blast Deal",
-    color: "#d45312", // golden yellow
+    color: "#d45312",
     image: burger,
     caption: "Combo Offer",
   },
   {
     id: 3,
     title: "Sushi Sunday Special",
-    color: "#0c4939", // fresh green
+    color: "#0c4939",
     image: sushi,
     caption: "Hot Deal",
   },
   {
     id: 4,
     title: "Taco Tuesday Treat",
-    color: "#e29113", // vibrant blue
+    color: "#e29113",
     image: taco,
     caption: "From $14",
   },
   {
     id: 5,
     title: "Pasta Lovers Feast",
-    color: "#271f8a", // rich purple
+    color: "#271f8a",
     image: pasta,
     caption: "30% Offer",
   },
   {
     id: 6,
     title: "Dessert Delight Offer",
-    color: "#5c1f8a", // soft peach-pink
+    color: "#5c1f8a",
     image: donut,
     caption: "From $10",
   },

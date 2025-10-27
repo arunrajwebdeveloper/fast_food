@@ -12,6 +12,7 @@ import images from "@/constants";
 import CartButton from "@/components/CartButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useAuthStore from "@/store/auth.store";
+import { router } from "expo-router";
 
 export default function Index() {
   const { user } = useAuthStore();
@@ -48,6 +49,7 @@ export default function Index() {
                 )}
                 style={{ backgroundColor: item.color }}
                 android_ripple={{ color: "#ffffff" }}
+                onPress={() => router.push("/search")}
               >
                 {({ pressed }) => (
                   <>
@@ -56,7 +58,6 @@ export default function Index() {
                         source={item.image}
                         className="size-full"
                         resizeMode="contain"
-                        // tintColor="#ffffff"
                       />
                     </View>
                     <View
