@@ -1,10 +1,11 @@
-import { CreateUserParams, SignInParams, User } from "@/type";
+import { CreateUserParams, GetMenuParams, SignInParams, User } from "@/type";
 import {
   Account,
   Avatars,
   Client,
   ID,
   Query,
+  Storage,
   TablesDB,
 } from "react-native-appwrite";
 
@@ -13,7 +14,12 @@ export const appwriteConfig = {
   platform: "com.native.food_order",
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
   databaseId: "68fb92fa000d23756414",
+  bucketId: "68fe38b3001db157f0aa",
   userCollection: "user",
+  categoriesCollection: "68fe4e0f000e52b2a96c",
+  menuCollection: "menu",
+  customizationsCollection: "customizations",
+  menuCustomizationsCollection: "menu_customizations",
 };
 
 export const client = new Client();
@@ -25,6 +31,7 @@ client
 
 export const account = new Account(client);
 export const tablesDB = new TablesDB(client);
+export const storage = new Storage(client);
 
 const avatars = new Avatars(client);
 
@@ -88,6 +95,38 @@ export const getCurrentUser = async () => {
 
     if (!currentUser) throw Error;
     return currentUser.rows[0];
+  } catch (err) {
+    throw new Error(err as string);
+  }
+};
+
+export const getCategories = async () => {
+  try {
+    const categories = await tablesDB.listRows({
+      databaseId: appwriteConfig.databaseId,
+      tableId: appwriteConfig.categoriesCollection,
+    });
+
+    return categories.rows;
+  } catch (err) {
+    throw new Error(err as string);
+  }
+};
+
+export const getMenu = async ({ category, query }: GetMenuParams) => {
+  try {
+    const queries: string[] = [];
+
+    if (category) queries.push(Query.equal("categories", category));
+    if (query) queries.push(Query.search("name", query));
+
+    const menus = await tablesDB.listRows({
+      databaseId: appwriteConfig.databaseId,
+      tableId: appwriteConfig.menuCollection,
+      queries,
+    });
+
+    return menus.rows;
   } catch (err) {
     throw new Error(err as string);
   }

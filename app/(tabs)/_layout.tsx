@@ -5,7 +5,7 @@ import images from "@/constants";
 import cn from "clsx";
 
 const TabBarIcon = ({ focused, icon, title }: any) => (
-  <View className="flex-1 items-center gap-y-1 pt-3">
+  <View className="tab-icon">
     <Image
       source={icon}
       className="size-7"

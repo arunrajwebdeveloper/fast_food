@@ -1,3 +1,80 @@
+import { Models } from "react-native-appwrite";
+
+export interface MenuItem extends Models.DefaultRow {
+  name: string;
+  price: number;
+  image_url: string;
+  description: string;
+  calories: number;
+  protein: number;
+  rating: number;
+  type: string;
+}
+
+export interface Category extends Models.DefaultRow {
+  name: string;
+  description: string;
+}
+
+export interface User extends Models.DefaultRow {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+export interface CartCustomization {
+  id: string;
+  name: string;
+  price: number;
+  type: string;
+}
+
+export interface CartItemType {
+  id: string; // menu item id
+  name: string;
+  price: number;
+  image_url: string;
+  quantity: number;
+  customizations?: CartCustomization[];
+}
+
+export interface CartStore {
+  items: CartItem[];
+  addItem: (item: Omit<CartItem, "quantity">) => void;
+  removeItem: (id: string, customizations: CartCustomization[]) => void;
+  increaseQty: (id: string, customizations: CartCustomization[]) => void;
+  decreaseQty: (id: string, customizations: CartCustomization[]) => void;
+  clearCart: () => void;
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
+}
+
+interface TabBarIconProps {
+  focused: boolean;
+  icon: ImageSourcePropType;
+  title: string;
+}
+
+interface PaymentInfoStripeProps {
+  label: string;
+  value: string;
+  labelStyle?: string;
+  valueStyle?: string;
+}
+
+interface CustomButtonProps {
+  onPress?: () => void;
+  title?: string;
+  style?: string;
+  leftIcon?: React.ReactNode;
+  textStyle?: string;
+  isLoading?: boolean;
+}
+
+interface CustomHeaderProps {
+  title?: string;
+}
+
 interface CustomInputProps {
   placeholder?: string;
   value?: string;
@@ -7,19 +84,16 @@ interface CustomInputProps {
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 }
 
-interface CustomButtonProps {
-  onPress?: () => void;
-  title: string;
-  className?: string;
-  textStyle?: string;
-  leftIcon?: any;
-  isLoading?: boolean;
+interface ProfileFieldProps {
+  label: string;
+  value: string;
+  icon: ImageSourcePropType;
 }
 
 interface CreateUserParams {
-  name: string;
   email: string;
   password: string;
+  name: string;
 }
 
 interface SignInParams {
@@ -27,18 +101,7 @@ interface SignInParams {
   password: string;
 }
 
-interface User {
-  name: string;
-  email: string;
-  accountId: string;
-  avatar: string;
-  id: string;
+interface GetMenuParams {
+  category: string;
+  query: string;
 }
-
-export {
-  CustomInputProps,
-  CustomButtonProps,
-  CreateUserParams,
-  SignInParams,
-  User,
-};
