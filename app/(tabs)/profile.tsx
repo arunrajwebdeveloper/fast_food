@@ -7,8 +7,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const profile = () => {
   const { user, isLoading } = useAuthStore();
 
-  console.log("user :>> ", user);
-
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
