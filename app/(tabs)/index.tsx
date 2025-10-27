@@ -17,13 +17,11 @@ export default function Index() {
   const { user } = useAuthStore();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-row justify-between items-center px-4 py-4">
+    <SafeAreaView className="h-full bg-white">
+      <View className="flex-row flex-between items-center px-5 my-5">
         <View>
-          <Text className="text-orange-500 uppercase text-sm font-quicksand-bold">
-            Deliver to:
-          </Text>
-          <TouchableOpacity className="flex-row items-center gap-x-1">
+          <Text className="small-bold uppercase text-primary">Deliver to:</Text>
+          <TouchableOpacity className="flex-row items-center gap-x-1 mt-0.5">
             <Text className="font-quicksand-bold text-base">Kochi</Text>
             <Image
               source={images.arrowDownFill}

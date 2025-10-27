@@ -3,6 +3,10 @@ import home from "@/assets/icons/home.png";
 import magnifer from "@/assets/icons/magnifer.png";
 import bag from "@/assets/icons/bag.png";
 import user from "@/assets/icons/user.png";
+import arrowBack from "@/assets/icons/arrow-left.png";
+import minus from "@/assets/icons/minus.png";
+import plus from "@/assets/icons/plus.png";
+import trash from "@/assets/icons/trash.png";
 
 import burger from "@/assets/images/burger.png";
 import pasta from "@/assets/images/pasta.png";
@@ -65,4 +69,8 @@ export default {
   magnifer,
   user,
   authBg,
+  arrowBack,
+  minus,
+  plus,
+  trash,
 };

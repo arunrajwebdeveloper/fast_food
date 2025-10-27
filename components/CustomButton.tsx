@@ -5,30 +5,19 @@ import { CustomButtonProps } from "@/type";
 const CustomButton = ({
   onPress,
   title = "Click me",
-  className,
+  style,
   textStyle,
   leftIcon,
   isLoading = false,
 }: CustomButtonProps) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      className={cn(
-        "w-full p-3 rounded-lg font-quicksand-medium outline-0 ring-0 bg-emerald-700",
-        className
-      )}
-    >
+    <TouchableOpacity onPress={onPress} className={cn("custom-btn", style)}>
       {leftIcon}
-      <View className=" items-center justify-center">
+      <View className="flex-center flex-row">
         {isLoading ? (
           <ActivityIndicator size="small" color="white" />
         ) : (
-          <Text
-            className={cn(
-              "text-white font-quicksand-bold text-center text-xl",
-              textStyle
-            )}
-          >
+          <Text className={cn("text-white-100 paragraph-bold", textStyle)}>
             {title}
           </Text>
         )}
