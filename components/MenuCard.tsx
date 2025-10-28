@@ -32,7 +32,7 @@ const MenuCard = ({
       >
         {name}
       </Text>
-      <Text className="body-regular text-gray-200 mb-4">From ${price}</Text>
+      <Text className="font-quicksand-semibold text-gray-200 mb-4">{`From $${price}`}</Text>
 
       <TouchableOpacity
         onPress={() =>
