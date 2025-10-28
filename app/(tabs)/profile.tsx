@@ -31,7 +31,7 @@ const profile = () => {
   };
 
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView className="h-full bg-slate-50">
       <View className="h-full px-5 pt-5">
         <CustomHeader title="My Profile" />
         <ScrollView>
@@ -42,7 +42,7 @@ const profile = () => {
               resizeMode="contain"
             />
 
-            <View className="mt-10 items-center">
+            <View className="mt-10 relative items-center bg-white w-full p-4 rounded-3xl shadow-sm">
               <Text className="font-quicksand-bold text-black text-3xl mb-1">
                 {user?.name}
               </Text>
@@ -55,7 +55,7 @@ const profile = () => {
                 onPress={logout}
                 className="mt-10 bg-red-100 w-full px-4 py-2 rounded-xl"
               >
-                <Text className="text-red-700 font-quicksand-bold text-lg">
+                <Text className="text-red-700 text-center font-quicksand-bold text-lg">
                   SignOut
                 </Text>
               </TouchableOpacity>

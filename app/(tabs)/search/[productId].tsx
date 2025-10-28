@@ -2,11 +2,44 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import useAppwrite from "@/lib/useAppwrite";
-import { getFoodDetails } from "@/lib/appwrite";
+import { appwriteConfig, getFoodDetails } from "@/lib/appwrite";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CustomHeader from "@/components/CustomHeader";
+import images from "@/constants";
+import cn from "clsx";
+import { useCartStore } from "@/store/cart.store";
+import CustomButton from "@/components/CustomButton";
+
+function DataGrid({
+  label,
+  value,
+  basis = "basis-1/2 ",
+}: {
+  label: string;
+  value: number | string;
+  basis?: string;
+}) {
+  return (
+    <View className="flex-col">
+      <Text
+        className={cn("paragraph-medium !text-lg text-slate-500", basis)}
+        numberOfLines={1}
+      >
+        {label}
+      </Text>
+      <Text
+        className={cn("base-semibold !text-lg text-black", basis)}
+        numberOfLines={1}
+      >
+        {value}
+      </Text>
+    </View>
+  );
+}
 
 export default function ProductDetailsPage() {
   const { productId } = useLocalSearchParams();
+  const { addItem, items } = useCartStore();
 
   const { data, refetch, loading } = useAppwrite({
     fn: getFoodDetails,
@@ -37,34 +70,126 @@ export default function ProductDetailsPage() {
     );
   }
 
+  const imageUrl = `${data?.image_url}?project=${appwriteConfig.projectId}`;
+
+  console.log("items :>> ", items);
+
+  const cartItem =
+    items?.length && items?.find((item) => item.id === data?.$id);
+
   return (
     <SafeAreaView className="bg-white h-full">
-      <ScrollView className="h-full px-5 pt-5">
-        <Image
-          source={{ uri: data?.image_url }}
-          className="size-48"
-          resizeMode="contain"
-        />
+      <ScrollView className="h-full ">
+        <View className="px-5 pt-5 pb-36">
+          <CustomHeader />
+          <Text
+            className="base-bold !text-3xl text-black mb-1"
+            numberOfLines={1}
+          >
+            {data.name}
+          </Text>
+          <View className="flex-row">
+            <View className="basis-1/2">
+              <View className="flex-row items-center gap-x-0.5">
+                <Image
+                  source={images.star}
+                  tintColor="#feca10"
+                  className="size-5"
+                />
+                <Text className="base-semibold">{data.rating}</Text>
+              </View>
+              <Text className="base-semibold text-3xl text-orange-500 mt-4">
+                ${data.price}
+              </Text>
 
-        <View>
-          {/* Title and Price */}
-          <View>
-            <Text>{data.name}</Text>
-            <Text>{data.price}</Text>
+              <View className="flex-row gap-x-10 mt-8">
+                <DataGrid label="Calories:" value={data.calories} />
+                <DataGrid label="Protein:" value={data.protein} />
+              </View>
+              <View className="mt-8">
+                <DataGrid
+                  basis="basis-1"
+                  label="Categories:"
+                  value={data.categories}
+                />
+              </View>
+              <View className="mt-8">
+                <DataGrid basis="basis-1" label="Total Reviews:" value={328} />
+              </View>
+            </View>
+
+            <View className="basis-1/2">
+              <Image
+                source={{ uri: imageUrl }}
+                className="h-96 w-96"
+                resizeMode="contain"
+              />
+            </View>
           </View>
 
-          {/* Rating and Description */}
-          <Text>⭐ {data.rating}</Text>
-          <Text>About this product:</Text>
-          <Text>Description: {data.description}</Text>
-          <Text>Calories: {data.calories}</Text>
-          <Text>Protein: {data.protein}</Text>
-          <Text>Categories: {data.categories}</Text>
+          <View className="bg-blue-50 flex-row items-center rounded-full p-4">
+            <View className="flex-row items-center justify-center gap-x-2 w-1/2 flex-none ">
+              <Image
+                source={images.delivery}
+                tintColor="#334155"
+                className="size-6"
+              />
+              <Text className="text-center base-semibold text-slate-700">
+                Free Delivery
+              </Text>
+            </View>
+            <View className="flex-row items-center justify-center gap-x-2 w-1/2 flex-none ">
+              <Image
+                source={images.clock}
+                tintColor="#334155"
+                className="size-5"
+              />
+              <Text className="text-center base-semibold text-slate-700">
+                20-30 mins
+              </Text>
+            </View>
+          </View>
 
-          {/* Action Button */}
-          <TouchableOpacity>
-            <Text>Add to Cart</Text>
-          </TouchableOpacity>
+          <View className="mt-8">
+            <Text className="base-bold text-slate-700 !text-xl mb-4">
+              Description:
+            </Text>
+            <Text className="paragraph-medium">{data.description}</Text>
+          </View>
+
+          <View className="mt-8">
+            <Text className="base-bold text-slate-700 !text-xl mb-4">
+              Additional Information:
+            </Text>
+            <Text className="paragraph-medium">
+              Duis ut augue in tortor venenatis vehicula eu eu purus. In ex
+              sapien, fringilla id sollicitudin sit amet, laoreet in neque. Orci
+              varius natoque penatibus et magnis dis parturient montes, nascetur
+              ridiculus mus. Sed purus sapien, convallis ac erat a, volutpat
+              posuere lorem. Donec ipsum mauris, rutrum ac malesuada nec, porta
+              vel velit. Cras viverra maximus lorem eu fringilla. Nunc efficitur
+              eleifend augue, sed vestibulum eros porttitor eu. Duis non
+              vestibulum nibh.
+            </Text>
+          </View>
+
+          <CustomButton
+            title={
+              cartItem?.price
+                ? `Add to Cart ($${cartItem?.price})`
+                : "Add to Cart"
+            }
+            style="bg-orange-500 mt-8 py-5"
+            onPress={() =>
+              addItem({
+                id: data.$id,
+                name: data.name,
+                price: data.price,
+                image_url: imageUrl,
+                customizations: [],
+              })
+            }
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -57,7 +57,12 @@ const CartItem = ({ item }: { item: CartItemType }) => {
         onPress={() => removeItem(item.id, item.customizations!)}
         className="flex-center"
       >
-        <Image source={images.trash} className="size-7" resizeMode="contain" />
+        <Image
+          source={images.trash}
+          tintColor="#fc574c"
+          className="size-7"
+          resizeMode="contain"
+        />
       </TouchableOpacity>
     </View>
   );

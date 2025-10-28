@@ -41,7 +41,7 @@ const _layout = () => {
             height: 70,
             position: "absolute",
             bottom: 50,
-            backgroundColor: "white",
+            backgroundColor: "#ffffff",
             shadowColor: "#1a1a1a",
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.1,

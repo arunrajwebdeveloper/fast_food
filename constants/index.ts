@@ -7,6 +7,9 @@ import arrowBack from "@/assets/icons/arrow-left.png";
 import arrowDown from "@/assets/icons/arrow-down.png";
 import minus from "@/assets/icons/minus.png";
 import plus from "@/assets/icons/plus.png";
+import star from "@/assets/icons/star.png";
+import delivery from "@/assets/icons/delivery.png";
+import clock from "@/assets/icons/clock.png";
 import trash from "@/assets/icons/trash.png";
 import burger from "@/assets/images/burger.png";
 import pasta from "@/assets/images/pasta.png";
@@ -73,4 +76,7 @@ export default {
   minus,
   plus,
   trash,
+  star,
+  delivery,
+  clock,
 };

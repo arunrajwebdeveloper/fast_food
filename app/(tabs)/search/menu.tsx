@@ -45,7 +45,7 @@ const menu = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full">
+    <SafeAreaView className="bg-slate-50 h-full">
       <FlatList
         data={data}
         renderItem={({ item, index }) => {
