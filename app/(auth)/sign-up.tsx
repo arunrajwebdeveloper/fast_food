@@ -64,7 +64,7 @@ const SignUp = () => {
         secureTextEntry={true}
       />
       <CustomButton
-        className="mt-2"
+        style="mt-2"
         title="Sign Up"
         isLoading={isSubmitting}
         onPress={submit}

@@ -5,8 +5,11 @@ import { Link, router } from "expo-router";
 import { useState } from "react";
 import { View, Text, Alert } from "react-native";
 import * as Sentry from "@sentry/react-native";
+import useAuthStore from "@/store/auth.store";
 
 const SignIn = () => {
+  const { fetchAuthenticatedUser } = useAuthStore();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
 
@@ -20,6 +23,7 @@ const SignIn = () => {
 
     try {
       await signIn({ email, password });
+      await fetchAuthenticatedUser();
       router.replace("/");
     } catch (err: any) {
       Alert.alert("Error", err?.message);
@@ -49,7 +53,7 @@ const SignIn = () => {
         secureTextEntry={true}
       />
       <CustomButton
-        className="mt-2"
+        style="mt-2"
         title="Sign In"
         isLoading={isSubmitting}
         onPress={submit}

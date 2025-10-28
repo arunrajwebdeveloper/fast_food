@@ -1,13 +1,34 @@
-import CustomButton from "@/components/CustomButton";
+import { useState } from "react";
 import CustomHeader from "@/components/CustomHeader";
 import useAuthStore from "@/store/auth.store";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Redirect, router } from "expo-router";
+import * as Sentry from "@sentry/react-native";
 
 const profile = () => {
-  const { user, isLoading } = useAuthStore();
+  const { user, signOutCurrentUser } = useAuthStore();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (isLoading) return <Text>Loading...</Text>;
+  const logout = async () => {
+    setIsSubmitting(true);
+    try {
+      await signOutCurrentUser();
+      router.replace("/sign-in");
+    } catch (err: any) {
+      Alert.alert("Error", err?.message);
+      Sentry.captureEvent(err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <SafeAreaView className="h-full bg-white">
@@ -30,7 +51,8 @@ const profile = () => {
               </Text>
 
               <TouchableOpacity
-                onPress={() => {}}
+                disabled={isSubmitting}
+                onPress={logout}
                 className="mt-10 bg-red-100 w-full px-4 py-2 rounded-xl"
               >
                 <Text className="text-red-700 font-quicksand-bold text-lg">
