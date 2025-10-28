@@ -20,11 +20,11 @@ export default function Index() {
         <View>
           <Text className="small-bold uppercase text-primary">Deliver to:</Text>
           <TouchableOpacity className="flex-row items-center gap-x-1 mt-0.5">
-            <Text className="font-quicksand-bold text-base">Kochi</Text>
+            <Text className="paragraph-semibold text-dark-100">Kochi</Text>
             <Image
-              source={images.arrowDownFill}
+              source={images.arrowDown}
               resizeMode="contain"
-              className="size-3"
+              className="size-4"
             />
           </TouchableOpacity>
         </View>
