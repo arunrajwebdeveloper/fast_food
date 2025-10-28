@@ -5,8 +5,10 @@ import { Text, TouchableOpacity, Image, Platform } from "react-native";
 
 const MenuCard = ({
   item: { $id, image_url, name, price },
+  onPress,
 }: {
   item: MenuItem;
+  onPress: (id: string) => void;
 }) => {
   const imageUrl = `${image_url}?project=${appwriteConfig.projectId}`;
 
@@ -14,6 +16,7 @@ const MenuCard = ({
 
   return (
     <TouchableOpacity
+      onPress={() => onPress($id)}
       className="menu-card"
       style={
         Platform.OS === "android"

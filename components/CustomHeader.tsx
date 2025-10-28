@@ -18,7 +18,7 @@ const CustomHeader = ({ title }: CustomHeaderProps) => {
       </TouchableOpacity>
 
       {title && <Text className="base-semibold text-dark-100">{title}</Text>}
-      <TouchableOpacity onPress={() => router.push("/search")}>
+      <TouchableOpacity onPress={() => router.push("/search/menu")}>
         <Image
           source={images.magnifer}
           className="size-7"

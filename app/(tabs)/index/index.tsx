@@ -46,7 +46,7 @@ export default function Index() {
                 )}
                 style={{ backgroundColor: item.color }}
                 android_ripple={{ color: "#ffffff" }}
-                onPress={() => router.push("/search")}
+                onPress={() => router.push("../search")}
               >
                 {({ pressed }) => (
                   <>

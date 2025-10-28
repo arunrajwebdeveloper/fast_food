@@ -29,7 +29,7 @@ const SignUp = () => {
       });
 
       Alert.alert("Success", "User signed in successfully");
-      router.replace("/");
+      router.replace("./");
     } catch (err: any) {
       Alert.alert("Error", err?.message);
       Sentry.captureEvent(err);

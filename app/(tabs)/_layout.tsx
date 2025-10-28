@@ -1,6 +1,6 @@
 import useAuthStore from "@/store/auth.store";
 import { Redirect, Tabs } from "expo-router";
-import { Image, StatusBar, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import images from "@/constants";
 import cn from "clsx";
 
@@ -51,7 +51,7 @@ const _layout = () => {
         }}
       >
         <Tabs.Screen
-          name="index"
+          name="index/index"
           options={{
             title: "Home",
             tabBarIcon: ({ focused }) => (

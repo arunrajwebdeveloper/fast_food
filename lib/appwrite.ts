@@ -141,3 +141,19 @@ export const getMenu = async ({ category, query }: GetMenuParams) => {
     throw new Error(err as string);
   }
 };
+
+export const getFoodDetails = async ({ productId }: { productId: string }) => {
+  try {
+    if (!productId) return;
+
+    const product = await tablesDB.getRow({
+      databaseId: appwriteConfig.databaseId,
+      tableId: appwriteConfig.menuCollection,
+      rowId: productId,
+    });
+
+    return product;
+  } catch (err) {
+    throw new Error(err as string);
+  }
+};

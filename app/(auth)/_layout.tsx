@@ -13,7 +13,7 @@ import useAuthStore from "@/store/auth.store";
 const _layout = () => {
   const { isAuthenticated } = useAuthStore();
 
-  if (isAuthenticated) return <Redirect href="/" />;
+  if (isAuthenticated) return <Redirect href="./" />;
 
   return (
     <KeyboardAvoidingView

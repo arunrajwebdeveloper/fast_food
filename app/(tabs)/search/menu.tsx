@@ -2,7 +2,7 @@ import CartButton from "@/components/CartButton";
 import { getCategories, getMenu } from "@/lib/appwrite";
 import cn from "clsx";
 import useAppwrite from "@/lib/useAppwrite";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,7 +13,7 @@ import Filter from "@/components/Filter";
 
 const limit = 6;
 
-const search = () => {
+const menu = () => {
   const { query, category } = useLocalSearchParams<{
     query: string;
     category: string;
@@ -36,6 +36,14 @@ const search = () => {
     refetch({ category, query, limit });
   }, [category, query]);
 
+  const handleProductPress = (productId: string) => {
+    // Navigate using the relative path within the 'search' directory
+    router.push({
+      pathname: "/search/[productId]",
+      params: { productId },
+    });
+  };
+
   return (
     <SafeAreaView className="bg-white h-full">
       <FlatList
@@ -50,7 +58,7 @@ const search = () => {
                 !isFirstRightColItem ? "mt-10" : "mt-0"
               )}
             >
-              <MenuCard item={item as MenuItem} />
+              <MenuCard item={item as MenuItem} onPress={handleProductPress} />
             </View>
           );
         }}
@@ -90,4 +98,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default menu;

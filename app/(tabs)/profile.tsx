@@ -35,7 +35,7 @@ const profile = () => {
       <View className="h-full px-5 pt-5">
         <CustomHeader title="My Profile" />
         <ScrollView>
-          <View className="flex-1 items-center">
+          <View className="flex-1 pb-24 items-center">
             <Image
               source={{ uri: user?.avatar }}
               className="size-44 rounded-full"
