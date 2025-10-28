@@ -3,9 +3,10 @@ import { Redirect, Tabs } from "expo-router";
 import { Image, Text, View } from "react-native";
 import images from "@/constants";
 import cn from "clsx";
+import { useCartStore } from "@/store/cart.store";
 
-const TabBarIcon = ({ focused, icon, title }: any) => (
-  <View className="tab-icon">
+const TabBarIcon = ({ focused, icon, title, count = 0 }: any) => (
+  <View className="tab-icon relative">
     <Image
       source={icon}
       className="size-7"
@@ -20,11 +21,19 @@ const TabBarIcon = ({ focused, icon, title }: any) => (
     >
       {title}
     </Text>
+
+    {count > 0 && (
+      <View className="cart-badge !right-4 !-top-4">
+        <Text className="small-bold text-white">{count}</Text>
+      </View>
+    )}
   </View>
 );
 
 const _layout = () => {
   const { isAuthenticated } = useAuthStore();
+  const { getTotalItems } = useCartStore();
+  const totalItems = getTotalItems();
 
   if (!isAuthenticated) return <Redirect href="/sign-in" />;
 
@@ -77,7 +86,12 @@ const _layout = () => {
           options={{
             title: "Cart",
             tabBarIcon: ({ focused }) => (
-              <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
+              <TabBarIcon
+                title="Cart"
+                icon={images.bag}
+                focused={focused}
+                count={totalItems}
+              />
             ),
           }}
         />

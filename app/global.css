@@ -22,7 +22,7 @@
   }
 
   .cart-badge {
-    @apply absolute -top-2 -right-1 flex items-center justify-center size-5 bg-primary rounded-full;
+    @apply absolute -top-2 -right-1 z-10 flex items-center justify-center size-5 bg-primary rounded-full;
   }
 
   .cart-item {
