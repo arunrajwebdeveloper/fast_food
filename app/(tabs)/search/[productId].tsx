@@ -39,7 +39,7 @@ function DataGrid({
 
 export default function ProductDetailsPage() {
   const { productId } = useLocalSearchParams();
-  const { addItem, items } = useCartStore();
+  const { addItem, items, decreaseQty, increaseQty } = useCartStore();
 
   const { data, refetch, loading } = useAppwrite({
     fn: getFoodDetails,
@@ -72,15 +72,12 @@ export default function ProductDetailsPage() {
 
   const imageUrl = `${data?.image_url}?project=${appwriteConfig.projectId}`;
 
-  console.log("items :>> ", items);
-
-  const cartItem =
-    items?.length && items?.find((item) => item.id === data?.$id);
+  const cartItem = items?.find((item) => item.id === data?.$id);
 
   return (
     <SafeAreaView className="bg-white h-full">
       <ScrollView className="h-full ">
-        <View className="px-5 pt-5 pb-36">
+        <View className="px-5 pt-5 pb-32">
           <CustomHeader />
           <Text
             className="base-bold !text-3xl text-black mb-1"
@@ -173,23 +170,56 @@ export default function ProductDetailsPage() {
             </Text>
           </View>
 
-          <CustomButton
-            title={
-              cartItem?.price
-                ? `Add to Cart ($${cartItem?.price})`
-                : "Add to Cart"
-            }
-            style="bg-orange-500 mt-8 py-5"
-            onPress={() =>
-              addItem({
-                id: data.$id,
-                name: data.name,
-                price: data.price,
-                image_url: imageUrl,
-                customizations: [],
-              })
-            }
-          />
+          <View className="flex-row items-center gap-x-8 mt-6">
+            <View className="flex flex-row items-center gap-x-4 mt-2">
+              <TouchableOpacity
+                onPress={() =>
+                  decreaseQty(cartItem?.id, cartItem?.customizations! || [])
+                }
+                className="cart-item__actions size-11"
+              >
+                <Image
+                  source={images.minus}
+                  className="size-4"
+                  resizeMode="contain"
+                  tintColor="#FF9C01"
+                />
+              </TouchableOpacity>
+
+              <Text className="base-bold text-dark-100">
+                {cartItem?.quantity || 0}
+              </Text>
+
+              <TouchableOpacity
+                onPress={() =>
+                  increaseQty(cartItem?.id, cartItem?.customizations! || [])
+                }
+                className="cart-item__actions size-11"
+              >
+                <Image
+                  source={images.plus}
+                  className="size-4"
+                  resizeMode="contain"
+                  tintColor="#FF9C01"
+                />
+              </TouchableOpacity>
+            </View>
+            <View className="flex-1">
+              <CustomButton
+                title={`Add to Cart ($${data?.price})`}
+                style="bg-orange-500"
+                onPress={() =>
+                  addItem({
+                    id: data.$id,
+                    name: data.name,
+                    price: data.price,
+                    image_url: imageUrl,
+                    customizations: [],
+                  })
+                }
+              />
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
