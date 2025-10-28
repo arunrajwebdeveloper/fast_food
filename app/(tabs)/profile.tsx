@@ -8,13 +8,14 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Redirect, router } from "expo-router";
 import * as Sentry from "@sentry/react-native";
 
 const profile = () => {
-  const { user, signOutCurrentUser } = useAuthStore();
+  const { user, isLoading, signOutCurrentUser } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const logout = async () => {
@@ -29,6 +30,16 @@ const profile = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView className="bg-white h-full">
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size={50} color="#f97316" />
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView className="h-full bg-slate-50">

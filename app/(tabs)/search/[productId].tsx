@@ -1,14 +1,25 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { useEffect } from "react";
-import useAppwrite from "@/lib/useAppwrite";
-import { appwriteConfig, getFoodDetails } from "@/lib/appwrite";
+import { useEffect, useState } from "react";
+import { appwriteConfig, getCategory, getFoodDetails } from "@/lib/appwrite";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomHeader from "@/components/CustomHeader";
 import images from "@/constants";
 import cn from "clsx";
 import { useCartStore } from "@/store/cart.store";
 import CustomButton from "@/components/CustomButton";
+import { MenuItem } from "@/type";
+
+interface DetailsState extends MenuItem {
+  category: string;
+}
 
 function DataGrid({
   label,
@@ -40,39 +51,56 @@ function DataGrid({
 export default function ProductDetailsPage() {
   const { productId } = useLocalSearchParams();
   const { addItem, items, decreaseQty, increaseQty } = useCartStore();
+  const [product, setProduct] = useState<DetailsState | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const { data, refetch, loading } = useAppwrite({
-    fn: getFoodDetails,
-    params: {
-      productId: productId?.toString(),
-    },
-  });
+  const fetchProductDetails = async () => {
+    try {
+      const details = await getFoodDetails({
+        productId: productId?.toString(),
+      });
+      const categories = await getCategory({
+        categoryId: details?.categories?.toString(),
+      });
+
+      const result = { ...details, category: categories?.name };
+      setProduct(result as DetailsState);
+    } catch (err) {
+      throw new Error(err as string);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (productId) {
-      refetch();
+      fetchProductDetails();
     }
   }, [productId]);
 
   if (loading) {
     return (
-      <View>
-        <Text>Loading Product Details...</Text>
-      </View>
+      <SafeAreaView className="bg-white h-full">
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size={50} color="#f97316" />
+        </View>
+      </SafeAreaView>
     );
   }
 
-  if (!data) {
+  if (!loading && !product) {
     return (
-      <View>
-        <Text>Product Not Found.</Text>
-      </View>
+      <SafeAreaView className="bg-white h-full">
+        <View className="flex-1 justify-center items-center">
+          <Text className="text-sm text-slate-500">Product not found.</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
-  const imageUrl = `${data?.image_url}?project=${appwriteConfig.projectId}`;
+  const imageUrl = `${product?.image_url}?project=${appwriteConfig.projectId}`;
 
-  const cartItem = items?.find((item) => item.id === data?.$id);
+  const cartItem = items?.find((item) => item.id === product?.$id);
 
   return (
     <SafeAreaView className="bg-white h-full">
@@ -83,7 +111,7 @@ export default function ProductDetailsPage() {
             className="base-bold !text-3xl text-black mb-1"
             numberOfLines={1}
           >
-            {data.name}
+            {product?.name}
           </Text>
           <View className="flex-row">
             <View className="basis-1/2">
@@ -93,21 +121,21 @@ export default function ProductDetailsPage() {
                   tintColor="#feca10"
                   className="size-5"
                 />
-                <Text className="base-semibold">{data.rating}</Text>
+                <Text className="base-semibold">{product?.rating}</Text>
               </View>
               <Text className="base-semibold text-3xl text-orange-500 mt-4">
-                ${data.price}
+                ${product?.price}
               </Text>
 
               <View className="flex-row gap-x-10 mt-8">
-                <DataGrid label="Calories:" value={data.calories} />
-                <DataGrid label="Protein:" value={data.protein} />
+                <DataGrid label="Calories:" value={product?.calories!} />
+                <DataGrid label="Protein:" value={product?.protein!} />
               </View>
               <View className="mt-8">
                 <DataGrid
                   basis="basis-1"
                   label="Categories:"
-                  value={data.categories}
+                  value={product?.category!}
                 />
               </View>
               <View className="mt-8">
@@ -151,7 +179,7 @@ export default function ProductDetailsPage() {
             <Text className="base-bold text-slate-700 !text-xl mb-4">
               Description:
             </Text>
-            <Text className="paragraph-medium">{data.description}</Text>
+            <Text className="paragraph-medium">{product?.description}</Text>
           </View>
 
           <View className="mt-8">
@@ -206,13 +234,13 @@ export default function ProductDetailsPage() {
             </View>
             <View className="flex-1">
               <CustomButton
-                title={`Add to Cart ($${data?.price})`}
+                title={`Add to Cart ($${product?.price})`}
                 style="bg-orange-500"
                 onPress={() =>
                   addItem({
-                    id: data.$id,
-                    name: data.name,
-                    price: data.price,
+                    id: product?.$id,
+                    name: product?.name,
+                    price: product?.price,
                     image_url: imageUrl,
                     customizations: [],
                   })

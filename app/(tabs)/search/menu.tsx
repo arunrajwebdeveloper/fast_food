@@ -4,7 +4,7 @@ import cn from "clsx";
 import useAppwrite from "@/lib/useAppwrite";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuCard from "@/components/MenuCard";
 import { Category, MenuItem } from "@/type";
@@ -37,12 +37,21 @@ const menu = () => {
   }, [category, query]);
 
   const handleProductPress = (productId: string) => {
-    // Navigate using the relative path within the 'search' directory
     router.push({
       pathname: "/search/[productId]",
       params: { productId },
     });
   };
+
+  if (loading) {
+    return (
+      <SafeAreaView className="bg-white h-full">
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size={50} color="#f97316" />
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView className="bg-slate-50 h-full">

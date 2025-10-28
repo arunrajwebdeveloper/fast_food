@@ -144,15 +144,27 @@ export const getMenu = async ({ category, query }: GetMenuParams) => {
 
 export const getFoodDetails = async ({ productId }: { productId: string }) => {
   try {
-    if (!productId) return;
-
-    const product = await tablesDB.getRow({
+    const result = await tablesDB.getRow({
       databaseId: appwriteConfig.databaseId,
       tableId: appwriteConfig.menuCollection,
       rowId: productId,
     });
 
-    return product;
+    return result;
+  } catch (err) {
+    throw new Error(err as string);
+  }
+};
+
+export const getCategory = async ({ categoryId }: { categoryId: string }) => {
+  try {
+    const result = await tablesDB.getRow({
+      databaseId: appwriteConfig.databaseId,
+      tableId: appwriteConfig.categoriesCollection,
+      rowId: categoryId,
+    });
+
+    return result;
   } catch (err) {
     throw new Error(err as string);
   }
