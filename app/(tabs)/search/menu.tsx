@@ -3,8 +3,14 @@ import { getCategories, getMenu } from "@/lib/appwrite";
 import cn from "clsx";
 import useAppwrite from "@/lib/useAppwrite";
 import { router, useLocalSearchParams } from "expo-router";
-import { useEffect } from "react";
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  RefreshControl,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuCard from "@/components/MenuCard";
 import { Category, MenuItem } from "@/type";
@@ -14,6 +20,8 @@ import Filter from "@/components/Filter";
 const limit = 6;
 
 const menu = () => {
+  const [refreshing, setRefreshing] = useState(false);
+
   const { query, category } = useLocalSearchParams<{
     query: string;
     category: string;
@@ -35,6 +43,15 @@ const menu = () => {
   useEffect(() => {
     refetch({ category, query, limit });
   }, [category, query]);
+
+  const onRefresh = useCallback(async () => {
+    try {
+      setRefreshing(true);
+      await refetch({ category, query, limit });
+    } finally {
+      setRefreshing(false);
+    }
+  }, []);
 
   const handleProductPress = (productId: string) => {
     router.push({
@@ -101,6 +118,9 @@ const menu = () => {
               No Result
             </Text>
           )
+        }
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
     </SafeAreaView>

@@ -5,9 +5,10 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { appwriteConfig, getCategory, getFoodDetails } from "@/lib/appwrite";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomHeader from "@/components/CustomHeader";
@@ -57,6 +58,7 @@ export default function ProductDetailsPage() {
   const { addItem, items, decreaseQty, increaseQty } = useCartStore();
   const [product, setProduct] = useState<DetailsState | null>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const fetchProductDetails = async () => {
     try {
@@ -81,6 +83,15 @@ export default function ProductDetailsPage() {
       fetchProductDetails();
     }
   }, [productId]);
+
+  const onRefresh = useCallback(async () => {
+    try {
+      setRefreshing(true);
+      await fetchProductDetails();
+    } finally {
+      setRefreshing(false);
+    }
+  }, []);
 
   if (loading) {
     return (
@@ -108,7 +119,12 @@ export default function ProductDetailsPage() {
 
   return (
     <SafeAreaView className="bg-white h-full">
-      <ScrollView className="h-full ">
+      <ScrollView
+        className="h-full"
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <View className="px-5 pt-5 pb-32">
           <CustomHeader />
           <Text
