@@ -72,6 +72,7 @@ const cart = () => {
             </View>
           )
         }
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );

@@ -78,6 +78,7 @@ export default function Index() {
         }}
         keyExtractor={(item) => item.id?.toString()}
         contentContainerClassName="pb-24 px-4"
+        showsVerticalScrollIndicator={false}
         // IF NEEDED A FLATLIST HEADER TEXT
         // ListHeaderComponent={() => (
         //   <View className="items-center py-2 px-4">

@@ -45,7 +45,7 @@ const profile = () => {
     <SafeAreaView className="h-full bg-slate-50">
       <View className="h-full px-5 pt-5">
         <CustomHeader title="My Profile" />
-        <ScrollView>
+        <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
           <View className="flex-1 pb-24 items-center">
             <Image
               source={{ uri: user?.avatar }}

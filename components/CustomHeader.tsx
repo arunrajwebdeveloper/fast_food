@@ -12,7 +12,7 @@ const CustomHeader = ({ title }: CustomHeaderProps) => {
       <TouchableOpacity onPress={() => router.back()} activeOpacity={0.9}>
         <Image
           source={images.arrowBack}
-          className="size-8"
+          className="size-7"
           resizeMode="contain"
         />
       </TouchableOpacity>
@@ -24,7 +24,7 @@ const CustomHeader = ({ title }: CustomHeaderProps) => {
       >
         <Image
           source={images.magnifer}
-          className="size-7"
+          className="size-6"
           resizeMode="contain"
         />
       </TouchableOpacity>

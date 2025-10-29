@@ -124,6 +124,7 @@ export default function ProductDetailsPage() {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        showsVerticalScrollIndicator={false}
       >
         <View className="px-5 pt-5 pb-32">
           <CustomHeader />
