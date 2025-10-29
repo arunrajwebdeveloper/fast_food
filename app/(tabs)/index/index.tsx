@@ -19,7 +19,10 @@ export default function Index() {
       <View className="flex-row flex-between items-center px-5 my-5">
         <View>
           <Text className="small-bold uppercase text-primary">Deliver to:</Text>
-          <TouchableOpacity className="flex-row items-center gap-x-1 mt-0.5">
+          <TouchableOpacity
+            className="flex-row items-center gap-x-1 mt-0.5"
+            activeOpacity={0.9}
+          >
             <Text className="paragraph-semibold text-dark-100">Kochi</Text>
             <Image
               source={images.arrowDown}

@@ -28,6 +28,7 @@ const Filter = ({ categories }: { categories: Category[] }) => {
       contentContainerClassName="gap-x-2 pb-3"
       renderItem={({ item }) => (
         <TouchableOpacity
+          activeOpacity={0.9}
           key={item.$id}
           className={cn(
             "filter",

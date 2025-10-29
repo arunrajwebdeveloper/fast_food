@@ -29,6 +29,7 @@ const SearchBar = () => {
         returnKeyType="search" // go
       />
       <TouchableOpacity
+        activeOpacity={0.9}
         className="pr-5"
         onPress={() => router.setParams({ query })}
       >

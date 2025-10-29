@@ -8,7 +8,11 @@ const CartButton = () => {
   const { getTotalItems } = useCartStore();
   const totalItems = getTotalItems();
   return (
-    <TouchableOpacity onPress={() => router.push("/cart")} className="cart-btn">
+    <TouchableOpacity
+      onPress={() => router.push("/cart")}
+      className="cart-btn"
+      activeOpacity={0.9}
+    >
       <Image
         source={images.bag}
         resizeMode="contain"

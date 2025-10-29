@@ -20,6 +20,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
         <TouchableOpacity
           onPress={() => handleProductPress(item.id)}
           className="cart-item__image"
+          activeOpacity={0.9}
         >
           <Image
             source={{ uri: item.image_url }}
@@ -38,6 +39,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
             <TouchableOpacity
               onPress={() => decreaseQty(item.id, item.customizations!)}
               className="cart-item__actions"
+              activeOpacity={0.9}
             >
               <Image
                 source={images.minus}
@@ -52,6 +54,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
             <TouchableOpacity
               onPress={() => increaseQty(item.id, item.customizations!)}
               className="cart-item__actions"
+              activeOpacity={0.9}
             >
               <Image
                 source={images.plus}
@@ -67,6 +70,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
       <TouchableOpacity
         onPress={() => removeItem(item.id, item.customizations!)}
         className="flex-center"
+        activeOpacity={0.9}
       >
         <Image
           source={images.trash}

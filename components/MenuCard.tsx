@@ -16,6 +16,7 @@ const MenuCard = ({
 
   return (
     <TouchableOpacity
+      activeOpacity={0.9}
       onPress={() => onPress($id)}
       className="menu-card"
       style={
@@ -38,6 +39,7 @@ const MenuCard = ({
       <Text className="font-quicksand-semibold text-gray-200 mb-4">{`From $${price}`}</Text>
 
       <TouchableOpacity
+        activeOpacity={0.9}
         onPress={() =>
           addItem({
             id: $id,

@@ -60,6 +60,7 @@ const profile = () => {
                 {user?.email}
               </Text>
               <TouchableOpacity
+                activeOpacity={0.9}
                 disabled={isSubmitting}
                 onPress={logout}
                 className="mt-10 bg-red-100 w-full px-4 py-2 rounded-xl"

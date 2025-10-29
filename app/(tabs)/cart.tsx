@@ -59,7 +59,7 @@ const cart = () => {
                   value={`- $0.50`}
                   valueStyle="!text-success"
                 />
-                <View className="border-t border-gray-300 my-2" />
+                <View className="border-t border-gray-50 my-2" />
                 <PaymentInfoStripe
                   label={`Total`}
                   value={`$${(totalPrice + 5 - 0.5).toFixed(2)}`}

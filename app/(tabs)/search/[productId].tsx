@@ -206,6 +206,7 @@ export default function ProductDetailsPage() {
           <View className="flex-row items-center gap-x-8 mt-6">
             <View className="flex flex-row items-center gap-x-4 mt-2">
               <TouchableOpacity
+                activeOpacity={0.9}
                 onPress={() =>
                   decreaseQty(cartItem?.id, cartItem?.customizations! || [])
                 }
@@ -224,6 +225,7 @@ export default function ProductDetailsPage() {
               </Text>
 
               <TouchableOpacity
+                activeOpacity={0.9}
                 onPress={() =>
                   increaseQty(cartItem?.id, cartItem?.customizations! || [])
                 }
