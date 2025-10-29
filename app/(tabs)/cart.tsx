@@ -6,6 +6,8 @@ import { View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "@/components/CustomButton";
 import CartItem from "@/components/CartItem";
+import images from "@/constants";
+import PageMessage from "@/components/PageMessage";
 
 const PaymentInfoStripe = ({
   label,
@@ -38,9 +40,13 @@ const cart = () => {
         contentContainerClassName="pb-28 px-5 pt-5"
         ListHeaderComponent={() => <CustomHeader title="Your Cart" />}
         ListEmptyComponent={() => (
-          <Text className="text-center mt-10 font-quicksand-bold text-lg text-slate-400">
-            Cart Empty
-          </Text>
+          <PageMessage
+            image={images.cartEmpty}
+            title="Your Cart is Empty"
+            description="Looks like you haven't added anything to your cart yet."
+            linkUrl="/search/menu"
+            linkText="Continue shopping"
+          />
         )}
         ListFooterComponent={() =>
           totalItems > 0 && (

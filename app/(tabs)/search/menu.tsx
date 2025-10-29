@@ -16,6 +16,8 @@ import MenuCard from "@/components/MenuCard";
 import { Category, MenuItem } from "@/type";
 import SearchBar from "@/components/SearchBar";
 import Filter from "@/components/Filter";
+import images from "@/constants";
+import PageMessage from "@/components/PageMessage";
 
 const limit = 6;
 
@@ -114,9 +116,11 @@ const menu = () => {
         )}
         ListEmptyComponent={() =>
           !loading && (
-            <Text className="text-center mt-10 font-quicksand-bold text-lg text-slate-400">
-              No Result
-            </Text>
+            <PageMessage
+              image={images.searchNotFound}
+              title="No Result found"
+              description="Try a different search term or check typo."
+            />
           )
         }
         refreshControl={

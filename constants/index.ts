@@ -18,6 +18,8 @@ import sushi from "@/assets/images/sushi.png";
 import taco from "@/assets/images/taco.png";
 import salad from "@/assets/images/salad.png";
 import authBg from "@/assets/images/auth-bg.jpg";
+import searchNotFound from "@/assets/images/search-not-found.png";
+import cartEmpty from "@/assets/images/cart-empty.png";
 
 export const offers = [
   {
@@ -79,4 +81,6 @@ export default {
   star,
   delivery,
   clock,
+  searchNotFound,
+  cartEmpty,
 };
