@@ -16,13 +16,16 @@ const SignIn = () => {
   const submit = async () => {
     const { email, password } = form;
 
-    if (!email || !password)
+    const trimmedEmail = email?.trim();
+    const trimmedPassword = password?.trim();
+
+    if (!trimmedEmail || !trimmedPassword)
       return Alert.alert("Error", "Please enter valid email & password");
 
     setIsSubmitting(true);
 
     try {
-      await signIn({ email, password });
+      await signIn({ email: trimmedEmail, password: trimmedPassword });
       await fetchAuthenticatedUser();
       router.replace("./");
     } catch (err: any) {

@@ -13,7 +13,11 @@ const SignUp = () => {
   const submit = async () => {
     const { name, email, password } = form;
 
-    if (!name.trim() || !email.trim() || !password.trim())
+    const trimmedName = name?.trim();
+    const trimmedEmail = email?.trim();
+    const trimmedPassword = password?.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedPassword)
       return Alert.alert(
         "Error",
         "Can't be empty Full name, email and password"
@@ -23,9 +27,9 @@ const SignUp = () => {
 
     try {
       await createUser({
-        name,
-        email,
-        password,
+        name: trimmedName,
+        email: trimmedEmail,
+        password: trimmedPassword,
       });
 
       Alert.alert("Success", "User signed in successfully");
