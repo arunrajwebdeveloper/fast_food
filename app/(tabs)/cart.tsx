@@ -2,7 +2,7 @@ import CustomHeader from "@/components/CustomHeader";
 import { useCartStore } from "@/store/cart.store";
 import cn from "clsx";
 import { PaymentInfoStripeProps } from "@/type";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "@/components/CustomButton";
 import CartItem from "@/components/CartItem";
@@ -38,7 +38,28 @@ const cart = () => {
         renderItem={({ item }) => <CartItem item={item} />}
         keyExtractor={(item) => item.id}
         contentContainerClassName="pb-28 px-5 pt-5"
-        ListHeaderComponent={() => <CustomHeader title="Your Cart" />}
+        ListHeaderComponent={() => (
+          <View>
+            <CustomHeader title="Your Cart" />
+            <View className="flex-row flex-between items-center mb-6">
+              <View>
+                <Text className="small-bold uppercase text-primary">
+                  Delivery Address
+                </Text>
+
+                <Text className="paragraph-bold text-dark-100">Home</Text>
+              </View>
+              <TouchableOpacity
+                className="py-3 px-4 border border-orange-500 rounded-full"
+                activeOpacity={0.9}
+              >
+                <Text className="paragraph-bold text-orange-500 text-sm">
+                  Change Address
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
         ListEmptyComponent={() => (
           <PageMessage
             image={images.cartEmpty}
