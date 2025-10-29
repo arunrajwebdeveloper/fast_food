@@ -16,6 +16,10 @@ import cn from "clsx";
 import { useCartStore } from "@/store/cart.store";
 import CustomButton from "@/components/CustomButton";
 import { MenuItem } from "@/type";
+import Accordion from "@/components/Accordion";
+
+const dummyText =
+  "Duis ut augue in tortor venenatis vehicula eu eu purus. In exsapien, fringilla id sollicitudin sit amet, laoreet in neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed purus sapien, convallis ac erat a, volutpat posuere lorem. Donec ipsum mauris, rutrum ac malesuada nec, porta vel velit. Cras viverra maximus lorem eu fringilla. Nunc efficitur eleifend augue, sed vestibulum eros porttitor eu. Duis non vestibulum nibh.";
 
 interface DetailsState extends MenuItem {
   category: string;
@@ -175,27 +179,12 @@ export default function ProductDetailsPage() {
             </View>
           </View>
 
-          <View className="mt-8">
-            <Text className="base-bold text-slate-700 !text-xl mb-4">
-              Description:
-            </Text>
-            <Text className="paragraph-medium">{product?.description}</Text>
-          </View>
-
-          <View className="mt-8">
-            <Text className="base-bold text-slate-700 !text-xl mb-4">
-              Additional Information:
-            </Text>
-            <Text className="paragraph-medium">
-              Duis ut augue in tortor venenatis vehicula eu eu purus. In ex
-              sapien, fringilla id sollicitudin sit amet, laoreet in neque. Orci
-              varius natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus. Sed purus sapien, convallis ac erat a, volutpat
-              posuere lorem. Donec ipsum mauris, rutrum ac malesuada nec, porta
-              vel velit. Cras viverra maximus lorem eu fringilla. Nunc efficitur
-              eleifend augue, sed vestibulum eros porttitor eu. Duis non
-              vestibulum nibh.
-            </Text>
+          <View className="mt-8 gap-y-1">
+            <Accordion
+              title="Description"
+              content={product?.description as string}
+            />
+            <Accordion title="Additional Information" content={dummyText} />
           </View>
 
           <View className="flex-row items-center gap-x-8 mt-6">
