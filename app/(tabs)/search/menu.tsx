@@ -120,7 +120,14 @@ const menu = () => {
           )
         }
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="#f97316" // iOS spinner color
+            colors={["#f97316", "#2563eb"]} // Android spinner colors (can be multiple)
+            progressBackgroundColor="#FFFFFF" // Android background behind spinner
+            progressViewOffset={30} // distance from top
+          />
         }
         showsVerticalScrollIndicator={false}
       />
