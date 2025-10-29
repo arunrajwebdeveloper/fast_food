@@ -35,7 +35,7 @@ const cart = () => {
         data={items}
         renderItem={({ item }) => <CartItem item={item} />}
         keyExtractor={(item) => item.id}
-        contentContainerClassName="pb-24 px-5 pt-5"
+        contentContainerClassName="pb-28 px-5 pt-5"
         ListHeaderComponent={() => <CustomHeader title="Your Cart" />}
         ListEmptyComponent={() => (
           <Text className="text-center mt-10 font-quicksand-bold text-lg text-slate-400">
@@ -44,8 +44,8 @@ const cart = () => {
         )}
         ListFooterComponent={() =>
           totalItems > 0 && (
-            <View className="gap-5">
-              <View className="mt-6 border border-gray-200 p-5 rounded-2xl">
+            <View className="gap-5 ">
+              <View className="mt-6 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
                 <Text className="h3-bold text-dark-100 mb-5">
                   Payment Summary
                 </Text>

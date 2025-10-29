@@ -52,15 +52,13 @@ const profile = () => {
               className="size-44 rounded-full"
               resizeMode="contain"
             />
-
-            <View className="mt-10 relative items-center bg-white w-full p-4 rounded-3xl shadow-sm">
+            <View className="mt-10 relative items-center bg-white w-full p-4 rounded-3xl shadow-md shadow-dark-100/30">
               <Text className="font-quicksand-bold text-black text-3xl mb-1">
                 {user?.name}
               </Text>
               <Text className="font-quicksand-medium text-gray-700 text-lg">
                 {user?.email}
               </Text>
-
               <TouchableOpacity
                 disabled={isSubmitting}
                 onPress={logout}
