@@ -3,6 +3,7 @@ import cn from "clsx";
 import {
   FlatList,
   Image,
+  Platform,
   Pressable,
   Text,
   TouchableOpacity,
@@ -12,8 +13,25 @@ import images from "@/constants";
 import CartButton from "@/components/CartButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+// import { useRef } from "react";
+// import * as NavigationBar from "expo-navigation-bar";
 
 export default function Index() {
+  // const lastOffset = useRef(0);
+
+  // const handleScroll = async (event: any) => {
+  //   if (Platform.OS !== "android") return;
+  //   const currentOffset = event.nativeEvent.contentOffset.y;
+  //   const direction = currentOffset > lastOffset.current ? "down" : "up";
+
+  //   if (direction === "down") {
+  //     await NavigationBar.setVisibilityAsync("hidden");
+  //   } else {
+  //     await NavigationBar.setVisibilityAsync("visible");
+  //   }
+  //   lastOffset.current = currentOffset;
+  // };
+
   return (
     <SafeAreaView className="h-full bg-white">
       <View className="flex-row flex-between items-center px-5 my-5">
@@ -79,6 +97,7 @@ export default function Index() {
         keyExtractor={(item) => item.id?.toString()}
         contentContainerClassName="pb-24 px-4"
         showsVerticalScrollIndicator={false}
+        // onScroll={handleScroll}
         // IF NEEDED A FLATLIST HEADER TEXT
         // ListHeaderComponent={() => (
         //   <View className="items-center py-2 px-4">

@@ -3,8 +3,9 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import "./global.css";
 import * as Sentry from "@sentry/react-native";
+import * as NavigationBar from "expo-navigation-bar";
 import useAuthStore from "@/store/auth.store";
-import { StatusBar } from "react-native";
+import { Platform, StatusBar } from "react-native";
 
 Sentry.init({
   dsn: "https://48e5582b89f882d33e7d7bbc817c91da@o4510253942243328.ingest.us.sentry.io/4510253945454593",
@@ -47,6 +48,24 @@ export default Sentry.wrap(function RootLayout() {
 
   useEffect(() => {
     fetchAuthenticatedUser();
+  }, []);
+
+  useEffect(() => {
+    async function setup() {
+      if (Platform.OS !== "android") return;
+
+      // Set bottom bar color
+      // await NavigationBar.setBackgroundColorAsync("#000000");
+
+      // Set bottom bar hidden
+      // await NavigationBar.setVisibilityAsync("hidden");
+
+      // await NavigationBar.setBehaviorAsync("inset-swipe"); // <-- auto-hide until swipe
+
+      // Optional: make icons light/dark
+      await NavigationBar.setButtonStyleAsync("dark");
+    }
+    setup();
   }, []);
 
   if (!fontsLoaded || isLoading) return null;

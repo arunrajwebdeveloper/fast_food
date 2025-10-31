@@ -3,13 +3,14 @@ import { getCategories, getMenu } from "@/lib/appwrite";
 import cn from "clsx";
 import useAppwrite from "@/lib/useAppwrite";
 import { router, useLocalSearchParams } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
   FlatList,
   ActivityIndicator,
   RefreshControl,
+  Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuCard from "@/components/MenuCard";
@@ -18,10 +19,13 @@ import SearchBar from "@/components/SearchBar";
 import Filter from "@/components/Filter";
 import images from "@/constants";
 import PageMessage from "@/components/PageMessage";
+import * as NavigationBar from "expo-navigation-bar";
 
 const limit = 6;
 
 const menu = () => {
+  const lastOffset = useRef(0);
+
   const [refreshing, setRefreshing] = useState(false);
 
   const { query, category } = useLocalSearchParams<{
@@ -60,6 +64,19 @@ const menu = () => {
       pathname: "/search/[productId]",
       params: { productId },
     });
+  };
+
+  const handleScroll = async (event: any) => {
+    if (Platform.OS !== "android") return;
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    const direction = currentOffset > lastOffset.current ? "down" : "up";
+
+    if (direction === "down") {
+      await NavigationBar.setVisibilityAsync("hidden");
+    } else {
+      await NavigationBar.setVisibilityAsync("visible");
+    }
+    lastOffset.current = currentOffset;
   };
 
   if (loading) {
@@ -134,6 +151,7 @@ const menu = () => {
           />
         }
         showsVerticalScrollIndicator={false}
+        onScroll={handleScroll}
       />
     </SafeAreaView>
   );
