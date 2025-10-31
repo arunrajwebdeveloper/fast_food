@@ -19,12 +19,12 @@ import SearchBar from "@/components/SearchBar";
 import Filter from "@/components/Filter";
 import images from "@/constants";
 import PageMessage from "@/components/PageMessage";
-import * as NavigationBar from "expo-navigation-bar";
+// import * as NavigationBar from "expo-navigation-bar";
 
 const limit = 6;
 
 const menu = () => {
-  const lastOffset = useRef(0);
+  // const lastOffset = useRef(0);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -66,18 +66,18 @@ const menu = () => {
     });
   };
 
-  const handleScroll = async (event: any) => {
-    if (Platform.OS !== "android") return;
-    const currentOffset = event.nativeEvent.contentOffset.y;
-    const direction = currentOffset > lastOffset.current ? "down" : "up";
+  // const handleScroll = async (event: any) => {
+  //   if (Platform.OS !== "android") return;
+  //   const currentOffset = event.nativeEvent.contentOffset.y;
+  //   const direction = currentOffset > lastOffset.current ? "down" : "up";
 
-    if (direction === "down") {
-      await NavigationBar.setVisibilityAsync("hidden");
-    } else {
-      await NavigationBar.setVisibilityAsync("visible");
-    }
-    lastOffset.current = currentOffset;
-  };
+  //   if (direction === "down") {
+  //     await NavigationBar.setVisibilityAsync("hidden");
+  //   } else {
+  //     await NavigationBar.setVisibilityAsync("visible");
+  //   }
+  //   lastOffset.current = currentOffset;
+  // };
 
   if (loading) {
     return (
@@ -151,7 +151,7 @@ const menu = () => {
           />
         }
         showsVerticalScrollIndicator={false}
-        onScroll={handleScroll}
+        // onScroll={handleScroll}
       />
     </SafeAreaView>
   );
