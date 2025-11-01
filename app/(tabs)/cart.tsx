@@ -96,7 +96,7 @@ const cart = () => {
                   />
                 </View>
 
-                <CustomButton title="Order Now" />
+                <CustomButton title="Checkout" />
               </View>
             )
           }
