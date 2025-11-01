@@ -38,7 +38,17 @@ const SignIn = () => {
 
   return (
     <View className="px-4 py-10 gap-y-6">
-      {/* <Text className="text-black font-quicksand-bold text-3xl">SignIn</Text> */}
+      <View className="pt-20 pb-8">
+        <Text className="text-black mb-4 font-quicksand-bold text-4xl text-center">
+          Welcome Back
+        </Text>
+        <Text className="text-slate-500 font-quicksand-medium text-lg text-center">
+          Craving something delicious?
+        </Text>
+        <Text className="text-slate-500 font-quicksand-medium text-lg text-center">
+          Log in to order your favorite meals in minutes.
+        </Text>
+      </View>
       <CustomInput
         placeholder="Enter email address"
         value={form.email}

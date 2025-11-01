@@ -44,7 +44,15 @@ const SignUp = () => {
 
   return (
     <View className="px-4 py-10 gap-y-6">
-      {/* <Text className="text-black font-quicksand-bold text-3xl">SignUp</Text> */}
+      <View className="pt-20 pb-8">
+        <Text className="text-black mb-4 font-quicksand-bold text-4xl text-center">
+          Fresh Food, Faster Delivery
+        </Text>
+        <Text className="text-slate-500 font-quicksand-medium text-lg text-center">
+          Create an account to explore restaurants, track your orders, and enjoy
+          easy re-ordering.
+        </Text>
+      </View>
       <CustomInput
         placeholder="Enter your name"
         value={form.name}
@@ -73,7 +81,6 @@ const SignUp = () => {
         isLoading={isSubmitting}
         onPress={submit}
       />
-
       <View className="items-center flex-row justify-center mt-4 gap-x-2">
         <Text className="font-quicksand-medium text-base text-black">
           Already have an account?

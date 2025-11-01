@@ -23,7 +23,7 @@ const _layout = () => {
         className="bg-white h-full"
         keyboardShouldPersistTaps="handled"
       >
-        <View
+        {/* <View
           className="w-full relative"
           style={{ height: Dimensions.get("screen").height / 2.8 }}
         >
@@ -32,7 +32,7 @@ const _layout = () => {
             className="size-full rounded-b-3xl absolute overflow-hidden z-10"
             resizeMode="cover"
           />
-        </View>
+        </View> */}
         <Slot />
       </ScrollView>
     </KeyboardAvoidingView>
