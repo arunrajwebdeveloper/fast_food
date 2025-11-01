@@ -38,7 +38,7 @@
   }
 
   .custom-btn {
-    @apply w-full p-3 rounded-lg font-quicksand-medium outline-0 ring-0 bg-emerald-700;
+    @apply w-full p-5 rounded-lg font-quicksand-bold outline-0 ring-0 bg-emerald-700;
   }
 
   .custom-header {

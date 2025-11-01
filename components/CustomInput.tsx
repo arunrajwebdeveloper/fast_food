@@ -14,10 +14,17 @@ const CustomInput = ({
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View className="w-full">
-      <Text className="mb-2 font-quicksand-bold text-base text-slate-500">
-        {label}
-      </Text>
+    <View className="w-full relative pt-3">
+      {label && (
+        <Text
+          className={cn(
+            "absolute bg-white z-10 left-4 px-2 font-quicksand-semibold text-lg",
+            isFocused ? "text-emerald-600" : "text-slate-600"
+          )}
+        >
+          {label}
+        </Text>
+      )}
       <TextInput
         autoCapitalize="none"
         autoCorrect={false}
@@ -30,8 +37,8 @@ const CustomInput = ({
         placeholder={placeholder}
         placeholderTextColor={"#666"}
         className={cn(
-          "p-3 w-full rounded-lg text-black font-quicksand-medium text-lg border-0 outline-0 ring-0 ",
-          isFocused ? "bg-slate-100" : "bg-slate-50"
+          "p-5 w-full rounded-lg text-black font-quicksand-semibold text-lg border outline-0 ring-0 ",
+          isFocused ? " border-emerald-600" : " border-slate-300"
         )}
       />
     </View>

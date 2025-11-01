@@ -37,7 +37,7 @@ const SignIn = () => {
   };
 
   return (
-    <View className="px-4 py-10 gap-y-4">
+    <View className="px-4 py-10 gap-y-6">
       {/* <Text className="text-black font-quicksand-bold text-3xl">SignIn</Text> */}
       <CustomInput
         placeholder="Enter email address"
