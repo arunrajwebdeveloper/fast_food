@@ -119,8 +119,11 @@ export default function ProductDetailsPage() {
 
   return (
     <SafeAreaView className="bg-white h-full">
+      <View className="px-5 pt-5">
+        <CustomHeader />
+      </View>
       <ScrollView
-        className="h-full"
+        className="flex-1 mt-4 px-5"
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -133,10 +136,9 @@ export default function ProductDetailsPage() {
         }
         showsVerticalScrollIndicator={false}
       >
-        <View className="px-5 pt-5 pb-32">
-          <CustomHeader />
+        <View className="pb-32">
           <Text
-            className="base-bold !text-3xl text-black mb-1"
+            className="base-bold !text-3xl text-black mb-1 mt-6"
             numberOfLines={1}
           >
             {product?.name}

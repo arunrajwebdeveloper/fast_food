@@ -11,6 +11,19 @@ import star from "@/assets/icons/star.png";
 import delivery from "@/assets/icons/delivery.png";
 import clock from "@/assets/icons/clock.png";
 import trash from "@/assets/icons/trash.png";
+import userLined from "@/assets/icons/user-lined.png";
+import arrowRight from "@/assets/icons/arrow-right.png";
+import heart from "@/assets/icons/heart.png";
+import locations from "@/assets/icons/locations.png";
+import logout from "@/assets/icons/logout.png";
+import wallet from "@/assets/icons/wallet.png";
+import orders from "@/assets/icons/orders.png";
+import notification from "@/assets/icons/notification.png";
+import paymentCard from "@/assets/icons/payment-car.png";
+import faq from "@/assets/icons/faq.png";
+import privacyPolicy from "@/assets/icons/privacy-policy.png";
+import starOutlined from "@/assets/icons/star-outlined.png";
+
 import burger from "@/assets/images/burger.png";
 import pasta from "@/assets/images/pasta.png";
 import pizza from "@/assets/images/pizza.png";
@@ -83,4 +96,16 @@ export default {
   clock,
   searchNotFound,
   cartEmpty,
+  userLined,
+  arrowRight,
+  heart,
+  locations,
+  logout,
+  wallet,
+  orders,
+  notification,
+  paymentCard,
+  faq,
+  privacyPolicy,
+  starOutlined,
 };

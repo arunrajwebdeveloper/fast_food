@@ -32,75 +32,77 @@ const cart = () => {
   const totalPrice = getTotalPrice();
 
   return (
-    <SafeAreaView className="bg-slate-50 h-full">
-      <FlatList
-        data={items}
-        renderItem={({ item }) => <CartItem item={item} />}
-        keyExtractor={(item) => item.id}
-        contentContainerClassName="pb-28 px-5 pt-5"
-        ListHeaderComponent={() => (
-          <View>
-            <CustomHeader title="Your Cart" />
-            <View className="flex-row flex-between items-center mb-6">
-              <View>
-                <Text className="small-bold uppercase text-primary">
-                  Delivery Address
-                </Text>
+    <SafeAreaView className="bg-slate-50 h-full px-5 pt-5">
+      <CustomHeader title="Your Cart" />
+      <View className="mt-4 flex-1">
+        <FlatList
+          data={items}
+          renderItem={({ item }) => <CartItem item={item} />}
+          keyExtractor={(item) => item.id}
+          contentContainerClassName="pb-28"
+          ListHeaderComponent={() => (
+            <View>
+              <View className="flex-row flex-between items-center mb-6 mt-10">
+                <View>
+                  <Text className="small-bold uppercase text-primary">
+                    Delivery Address
+                  </Text>
 
-                <Text className="paragraph-bold text-dark-100">Home</Text>
+                  <Text className="paragraph-bold text-dark-100">Home</Text>
+                </View>
+                <TouchableOpacity
+                  className="py-3 px-4 border border-orange-500 rounded-full"
+                  activeOpacity={0.9}
+                >
+                  <Text className="paragraph-bold text-orange-500 text-sm">
+                    Change Address
+                  </Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                className="py-3 px-4 border border-orange-500 rounded-full"
-                activeOpacity={0.9}
-              >
-                <Text className="paragraph-bold text-orange-500 text-sm">
-                  Change Address
-                </Text>
-              </TouchableOpacity>
             </View>
-          </View>
-        )}
-        ListEmptyComponent={() => (
-          <PageMessage
-            image={images.cartEmpty}
-            title="Your Cart is Empty"
-            description="Looks like you haven't added anything to your cart yet."
-            linkUrl="/search/menu"
-            linkText="Continue shopping"
-          />
-        )}
-        ListFooterComponent={() =>
-          totalItems > 0 && (
-            <View className="gap-5 ">
-              <View className="mt-6 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
-                <Text className="h3-bold text-dark-100 mb-5">
-                  Payment Summary
-                </Text>
-                <PaymentInfoStripe
-                  label={`Total Items (${totalItems})`}
-                  value={`$${totalPrice.toFixed(2)}`}
-                />
-                <PaymentInfoStripe label={`Delivery Fee`} value={`$5.00`} />
-                <PaymentInfoStripe
-                  label={`Discount`}
-                  value={`- $0.50`}
-                  valueStyle="!text-success"
-                />
-                <View className="border-t border-gray-50 my-2" />
-                <PaymentInfoStripe
-                  label={`Total`}
-                  value={`$${(totalPrice + 5 - 0.5).toFixed(2)}`}
-                  labelStyle="base-bold !text-dark-100"
-                  valueStyle="base-bold !text-dark-100 !text-right"
-                />
-              </View>
+          )}
+          ListEmptyComponent={() => (
+            <PageMessage
+              image={images.cartEmpty}
+              title="Your Cart is Empty"
+              description="Looks like you haven't added anything to your cart yet."
+              linkUrl="/search/menu"
+              linkText="Continue shopping"
+            />
+          )}
+          ListFooterComponent={() =>
+            totalItems > 0 && (
+              <View className="gap-5 ">
+                <View className="mt-6 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
+                  <Text className="h3-bold text-dark-100 mb-5">
+                    Payment Summary
+                  </Text>
+                  <PaymentInfoStripe
+                    label={`Total Items (${totalItems})`}
+                    value={`$${totalPrice.toFixed(2)}`}
+                  />
+                  <PaymentInfoStripe label={`Delivery Fee`} value={`$5.00`} />
+                  <PaymentInfoStripe
+                    label={`Discount`}
+                    value={`- $0.50`}
+                    valueStyle="!text-success"
+                  />
+                  <View className="border-t border-gray-50 my-2" />
+                  <PaymentInfoStripe
+                    label={`Total`}
+                    value={`$${(totalPrice + 5 - 0.5).toFixed(2)}`}
+                    labelStyle="base-bold !text-dark-100"
+                    valueStyle="base-bold !text-dark-100 !text-right"
+                  />
+                </View>
 
-              <CustomButton title="Order Now" />
-            </View>
-          )
-        }
-        showsVerticalScrollIndicator={false}
-      />
+                <CustomButton title="Order Now" />
+              </View>
+            )
+          }
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </SafeAreaView>
   );
 };
