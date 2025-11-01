@@ -5,10 +5,12 @@ import {
   ScrollView,
   Dimensions,
   ImageBackground,
+  Image,
 } from "react-native";
 import { Redirect, Slot } from "expo-router";
 import images from "@/constants";
 import useAuthStore from "@/store/auth.store";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const _layout = () => {
   const { isAuthenticated } = useAuthStore();
@@ -18,6 +20,7 @@ const _layout = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="flex-1"
     >
       <ScrollView
         className="bg-white h-full"

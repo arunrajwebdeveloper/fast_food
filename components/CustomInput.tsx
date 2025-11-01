@@ -35,7 +35,7 @@ const CustomInput = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={placeholder}
-        placeholderTextColor={"#666"}
+        placeholderTextColor={"#a3a3a3"}
         className={cn(
           "p-5 w-full rounded-lg text-black font-quicksand-semibold text-lg border outline-0 ring-0 ",
           isFocused ? " border-emerald-600" : " border-slate-300"

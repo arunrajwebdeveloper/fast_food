@@ -33,6 +33,7 @@ import salad from "@/assets/images/salad.png";
 import authBg from "@/assets/images/auth-bg.jpg";
 import searchNotFound from "@/assets/images/search-not-found.png";
 import cartEmpty from "@/assets/images/cart-empty.png";
+import mainLogo from "@/assets/images/fast-food-logo.png";
 
 export const offers = [
   {
@@ -108,4 +109,5 @@ export default {
   faq,
   privacyPolicy,
   starOutlined,
+  mainLogo,
 };

@@ -3,9 +3,10 @@ import CustomInput from "@/components/CustomInput";
 import { signIn } from "@/lib/appwrite";
 import { Link, router } from "expo-router";
 import { useState } from "react";
-import { View, Text, Alert } from "react-native";
+import { View, Text, Alert, Image } from "react-native";
 import * as Sentry from "@sentry/react-native";
 import useAuthStore from "@/store/auth.store";
+import images from "@/constants";
 
 const SignIn = () => {
   const { fetchAuthenticatedUser } = useAuthStore();
@@ -37,7 +38,7 @@ const SignIn = () => {
   };
 
   return (
-    <View className="px-4 py-10 gap-y-6">
+    <View className="px-4 py-8 gap-y-6">
       <View className="pt-20 pb-8">
         <Text className="text-black mb-4 font-quicksand-bold text-4xl text-center">
           Welcome Back
