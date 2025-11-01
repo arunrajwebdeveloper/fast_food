@@ -25,7 +25,7 @@ const PaymentInfoStripe = ({
   </View>
 );
 
-const cart = () => {
+const index = () => {
   const { items, getTotalItems, getTotalPrice } = useCartStore();
 
   const totalItems = getTotalItems();
@@ -107,4 +107,4 @@ const cart = () => {
   );
 };
 
-export default cart;
+export default index;
