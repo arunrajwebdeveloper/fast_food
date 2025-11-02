@@ -284,7 +284,9 @@ const checkout = () => {
                   </View>
                 </View>
 
-                <CustomButton title="Pay now" />
+                <CustomButton
+                  title={`Pay now ($${(totalPrice + 5 - 0.5).toFixed(2)})`}
+                />
               </View>
             )
           }
