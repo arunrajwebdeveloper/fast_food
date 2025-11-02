@@ -269,7 +269,7 @@ const checkout = () => {
                     <TouchableOpacity
                       onPress={() => {}}
                       activeOpacity={0.9}
-                      className="flex-row justify-center gap-x-2 items-center py-4 bg-slate-100 rounded-xl mt-4"
+                      className="flex-row justify-center gap-x-2 items-center py-3 bg-slate-50 rounded-xl mt-4"
                     >
                       <Image
                         source={images.plus}

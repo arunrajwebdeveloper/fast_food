@@ -6,6 +6,7 @@ import * as Sentry from "@sentry/react-native";
 import * as NavigationBar from "expo-navigation-bar";
 import useAuthStore from "@/store/auth.store";
 import { Platform, StatusBar } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 Sentry.init({
   dsn: "https://48e5582b89f882d33e7d7bbc817c91da@o4510253942243328.ingest.us.sentry.io/4510253945454593",
@@ -71,9 +72,9 @@ export default Sentry.wrap(function RootLayout() {
   if (!fontsLoaded || isLoading) return null;
 
   return (
-    <>
+    <SafeAreaProvider>
       <StatusBar barStyle="dark-content" />
       <Stack screenOptions={{ headerShown: false }} />
-    </>
+    </SafeAreaProvider>
   );
 });

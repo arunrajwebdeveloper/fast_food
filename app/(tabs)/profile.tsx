@@ -134,7 +134,7 @@ const profile = () => {
                 icon={images.orders}
                 label="Orders"
                 onPress={() => {}}
-                iconColor="#feba43"
+                iconColor="#31cc2e"
               />
               <ProfileLinkItem
                 icon={images.heart}
@@ -146,7 +146,7 @@ const profile = () => {
                 icon={images.starOutlined}
                 label="Reviews"
                 onPress={() => {}}
-                iconColor="#31cc2e"
+                iconColor="#feba43"
               />
               <ProfileLinkItem
                 icon={images.notification}
