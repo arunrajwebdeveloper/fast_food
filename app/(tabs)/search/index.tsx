@@ -23,7 +23,7 @@ import PageMessage from "@/components/PageMessage";
 
 const limit = 6;
 
-const menu = () => {
+const index = () => {
   // const lastOffset = useRef(0);
 
   const [refreshing, setRefreshing] = useState(false);
@@ -157,4 +157,4 @@ const menu = () => {
   );
 };
 
-export default menu;
+export default index;

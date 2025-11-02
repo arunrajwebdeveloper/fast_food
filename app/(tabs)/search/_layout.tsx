@@ -4,7 +4,7 @@ export default function SearchStackLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name="menu"
+        name="index"
         options={{
           title: "Menu",
           headerShown: false,

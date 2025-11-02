@@ -19,7 +19,7 @@ const CustomHeader = ({ title }: CustomHeaderProps) => {
 
       {title && <Text className="base-semibold text-dark-100">{title}</Text>}
       <TouchableOpacity
-        onPress={() => router.push("/search/menu")}
+        onPress={() => router.push("/search")}
         activeOpacity={0.9}
       >
         <Image
