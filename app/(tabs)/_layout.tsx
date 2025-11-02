@@ -82,7 +82,7 @@ const _layout = () => {
           }}
         />
         <Tabs.Screen
-          name="cart/index"
+          name="cart"
           options={{
             title: "Cart",
             tabBarIcon: ({ focused }) => (

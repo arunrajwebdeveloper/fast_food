@@ -24,6 +24,12 @@ import faq from "@/assets/icons/faq.png";
 import privacyPolicy from "@/assets/icons/privacy-policy.png";
 import starOutlined from "@/assets/icons/star-outlined.png";
 
+import debitCard from "@/assets/icons/debit-card.png";
+import netBanking from "@/assets/icons/net-banking.png";
+import phonepe from "@/assets/icons/phonepe.png";
+import gpay from "@/assets/icons/gpay.png";
+import tickCircle from "@/assets/icons/tick-circle.png";
+
 import burger from "@/assets/images/burger.png";
 import pasta from "@/assets/images/pasta.png";
 import pizza from "@/assets/images/pizza.png";
@@ -80,6 +86,21 @@ export const offers = [
   },
 ];
 
+export const addresses = [
+  {
+    id: "home",
+    label: "Home",
+    address:
+      "27/3 Sunrise Residency, Near City Mall, Andheri West, Mumbai, Maharashtra – 400058",
+  },
+  {
+    id: "office",
+    label: "Office",
+    address:
+      "2nd Floor, Infinity Business Hub, Viman Nagar, Pune, Maharashtra – 411014",
+  },
+];
+
 export default {
   arrowDownFill,
   arrowDown,
@@ -110,4 +131,9 @@ export default {
   privacyPolicy,
   starOutlined,
   mainLogo,
+  debitCard,
+  netBanking,
+  phonepe,
+  gpay,
+  tickCircle,
 };

@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton";
 import CartItem from "@/components/CartItem";
 import images from "@/constants";
 import PageMessage from "@/components/PageMessage";
+import { router } from "expo-router";
 
 const PaymentInfoStripe = ({
   label,
@@ -34,33 +35,33 @@ const index = () => {
   return (
     <SafeAreaView className="bg-slate-50 h-full px-5 pt-5">
       <CustomHeader title="Your Cart" />
-      <View className="mt-4 flex-1">
+      <View className="mt-5 flex-1">
         <FlatList
           data={items}
           renderItem={({ item }) => <CartItem item={item} />}
           keyExtractor={(item) => item.id}
-          contentContainerClassName="pb-28"
-          ListHeaderComponent={() => (
-            <View>
-              <View className="flex-row flex-between items-center mb-6 mt-10">
-                <View>
-                  <Text className="small-bold uppercase text-primary">
-                    Delivery Address
-                  </Text>
+          contentContainerClassName="pb-28 pt-5"
+          // ListHeaderComponent={() => (
+          //   <View>
+          //     <View className="flex-row flex-between items-center mb-6 mt-10">
+          //       <View>
+          //         <Text className="small-bold uppercase text-primary">
+          //           Delivery Address
+          //         </Text>
 
-                  <Text className="paragraph-bold text-dark-100">Home</Text>
-                </View>
-                <TouchableOpacity
-                  className="py-3 px-4 border border-orange-500 rounded-full"
-                  activeOpacity={0.9}
-                >
-                  <Text className="paragraph-bold text-orange-500 text-sm">
-                    Change Address
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          )}
+          //         <Text className="paragraph-bold text-dark-100">Home</Text>
+          //       </View>
+          //       <TouchableOpacity
+          //         className="py-3 px-4 border border-orange-500 rounded-full"
+          //         activeOpacity={0.9}
+          //       >
+          //         <Text className="paragraph-bold text-orange-500 text-sm">
+          //           Change Address
+          //         </Text>
+          //       </TouchableOpacity>
+          //     </View>
+          //   </View>
+          // )}
           ListEmptyComponent={() => (
             <PageMessage
               image={images.cartEmpty}
@@ -96,7 +97,10 @@ const index = () => {
                   />
                 </View>
 
-                <CustomButton title="Checkout" />
+                <CustomButton
+                  title="Checkout"
+                  onPress={() => router.push("/cart/checkout")}
+                />
               </View>
             )
           }
