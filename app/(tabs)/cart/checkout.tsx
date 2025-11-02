@@ -26,6 +26,66 @@ const PaymentInfoStripe = ({
   </View>
 );
 
+const AddressItem = ({ item, value, onPress }: any) => {
+  const { id, label, address } = item;
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.9}
+      className="flex-row gap-x-5 items-center"
+    >
+      <View
+        className={cn(
+          "size-7 rounded-full border-2 relative",
+          value === id ? "border-green-500" : "border-slate-400"
+        )}
+      >
+        {value === id && (
+          <Image
+            source={images.tickCircle}
+            resizeMode="contain"
+            className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+          />
+        )}
+      </View>
+      <View className="flex-1">
+        <Text className="font-quicksand-bold text-black mb-2">{label}</Text>
+        <Text className="paragraph-medium text-gray-200">{address}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const PaymentItem = ({ isSelected, label, icon, iconStyle, onPress }: any) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.9}
+      className="flex-between flex-row gap-x-2 items-center py-4"
+    >
+      <View className="flex-1 flex-row items-center gap-x-4">
+        <View
+          className={cn(
+            "size-7 rounded-full border-2 relative",
+            isSelected ? "border-green-500" : "border-slate-400"
+          )}
+        >
+          {isSelected && (
+            <Image
+              source={images.tickCircle}
+              resizeMode="contain"
+              className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+            />
+          )}
+        </View>
+        <Text className={cn("base-bold text-gray-500")}>{label}</Text>
+      </View>
+
+      <Image source={icon} resizeMode="contain" className={iconStyle} />
+    </TouchableOpacity>
+  );
+};
+
 const checkout = () => {
   const { items, getTotalItems, getTotalPrice } = useCartStore();
 
@@ -65,38 +125,12 @@ const checkout = () => {
                   </Text>
                   <View className="gap-y-8">
                     {addresses?.map((item) => (
-                      <TouchableOpacity
+                      <AddressItem
                         key={item.id}
+                        item={item}
+                        value={deliveryAddress}
                         onPress={() => setDeliveryAddress(item.id)}
-                        activeOpacity={0.9}
-                        className="flex-row gap-x-5 items-center"
-                      >
-                        <View
-                          className={cn(
-                            "size-7 rounded-full border-2 relative",
-                            deliveryAddress === item.id
-                              ? "border-green-500"
-                              : "border-slate-400"
-                          )}
-                        >
-                          {deliveryAddress === item.id && (
-                            <Image
-                              source={images.tickCircle}
-                              resizeMode="contain"
-                              className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-                            />
-                          )}
-                        </View>
-
-                        <View className="flex-1">
-                          <Text className="font-quicksand-bold text-black mb-2">
-                            {item.label}
-                          </Text>
-                          <Text className="paragraph-medium text-gray-200">
-                            {item.address}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
+                      />
                     ))}
                   </View>
                 </View>
@@ -130,141 +164,34 @@ const checkout = () => {
                   </Text>
 
                   <View className="gap-y-3">
-                    <TouchableOpacity
+                    <PaymentItem
+                      isSelected={payMethod === "card"}
+                      label="Debit / Credit Card"
+                      iconStyle="w-6 h-6"
+                      icon={images.debitCard}
                       onPress={() => setPayMethod("card")}
-                      activeOpacity={0.9}
-                      className="flex-between flex-row gap-x-2 items-center py-4"
-                    >
-                      <View className="flex-1 flex-row items-center gap-x-4">
-                        <View
-                          className={cn(
-                            "size-7 rounded-full border-2 relative",
-                            payMethod === "card"
-                              ? "border-green-500"
-                              : "border-slate-400"
-                          )}
-                        >
-                          {payMethod === "card" && (
-                            <Image
-                              source={images.tickCircle}
-                              resizeMode="contain"
-                              className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-                            />
-                          )}
-                        </View>
-                        <Text className={cn("base-bold text-gray-500")}>
-                          Debit / Credit Card
-                        </Text>
-                      </View>
-
-                      <Image
-                        source={images.debitCard}
-                        resizeMode="contain"
-                        className="w-6 h-6"
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
+                    />
+                    <PaymentItem
+                      isSelected={payMethod === "bank"}
+                      label="Internet Banking"
+                      iconStyle="w-6 h-6"
+                      icon={images.netBanking}
                       onPress={() => setPayMethod("bank")}
-                      activeOpacity={0.9}
-                      className="flex-between flex-row gap-x-2 items-center py-4"
-                    >
-                      <View className="flex-1 flex-row items-center gap-x-4">
-                        <View
-                          className={cn(
-                            "size-7 rounded-full border-2 relative",
-                            payMethod === "bank"
-                              ? "border-green-500"
-                              : "border-slate-400"
-                          )}
-                        >
-                          {payMethod === "bank" && (
-                            <Image
-                              source={images.tickCircle}
-                              resizeMode="contain"
-                              className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-                            />
-                          )}
-                        </View>
-                        <Text className={cn("base-bold text-gray-500")}>
-                          Internet Banking
-                        </Text>
-                      </View>
-
-                      <Image
-                        source={images.netBanking}
-                        resizeMode="contain"
-                        className="w-6 h-6"
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
+                    />
+                    <PaymentItem
+                      isSelected={payMethod === "gpay"}
+                      label="Gpay"
+                      iconStyle="w-14 h-6"
+                      icon={images.gpay}
                       onPress={() => setPayMethod("gpay")}
-                      activeOpacity={0.9}
-                      className="flex-between flex-row gap-x-2 items-center py-4"
-                    >
-                      <View className="flex-1 flex-row items-center gap-x-4">
-                        <View
-                          className={cn(
-                            "size-7 rounded-full border-2 relative",
-                            payMethod === "gpay"
-                              ? "border-green-500"
-                              : "border-slate-400"
-                          )}
-                        >
-                          {payMethod === "gpay" && (
-                            <Image
-                              source={images.tickCircle}
-                              resizeMode="contain"
-                              className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-                            />
-                          )}
-                        </View>
-                        <Text className={cn("base-bold text-gray-500")}>
-                          Gpay
-                        </Text>
-                      </View>
-
-                      <Image
-                        source={images.gpay}
-                        resizeMode="contain"
-                        className="w-14 h-6"
-                      />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
+                    />
+                    <PaymentItem
+                      isSelected={payMethod === "phonepe"}
+                      label="PhonePe"
+                      iconStyle="w-6 h-6"
+                      icon={images.phonepe}
                       onPress={() => setPayMethod("phonepe")}
-                      activeOpacity={0.9}
-                      className="flex-between flex-row gap-x-2 items-center py-4"
-                    >
-                      <View className="flex-1 flex-row items-center gap-x-4">
-                        <View
-                          className={cn(
-                            "size-7 rounded-full border-2 relative",
-                            payMethod === "phonepe"
-                              ? "border-green-500"
-                              : "border-slate-400"
-                          )}
-                        >
-                          {payMethod === "phonepe" && (
-                            <Image
-                              source={images.tickCircle}
-                              resizeMode="contain"
-                              className="size-7 rounded-full absolute z-10 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-                            />
-                          )}
-                        </View>
-                        <Text className={cn("base-bold text-gray-500")}>
-                          PhonePe
-                        </Text>
-                      </View>
-
-                      <Image
-                        source={images.phonepe}
-                        resizeMode="contain"
-                        className="w-6 h-6"
-                      />
-                    </TouchableOpacity>
+                    />
 
                     <TouchableOpacity
                       onPress={() => {}}
