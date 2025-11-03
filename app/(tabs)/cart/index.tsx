@@ -67,7 +67,7 @@ const index = () => {
               image={images.cartEmpty}
               title="Your Cart is Empty"
               description="Looks like you haven't added anything to your cart yet."
-              linkUrl="/search/menu"
+              linkUrl="/search"
               linkText="Continue shopping"
             />
           )}
