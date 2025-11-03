@@ -74,7 +74,9 @@ export default Sentry.wrap(function RootLayout() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+      </Stack>
     </SafeAreaProvider>
   );
 });
