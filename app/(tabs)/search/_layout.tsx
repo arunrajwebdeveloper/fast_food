@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 
 export default function SearchStackLayout() {
   return (
-    <Stack>
+    <Stack initialRouteName="index">
       <Stack.Screen
         name="index"
         options={{

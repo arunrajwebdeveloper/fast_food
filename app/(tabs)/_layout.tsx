@@ -1,12 +1,12 @@
 import useAuthStore from "@/store/auth.store";
-import { Redirect, Tabs } from "expo-router";
-import { Image, Text, View } from "react-native";
+import { Redirect, router, Tabs } from "expo-router";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import images from "@/constants";
 import cn from "clsx";
 import { useCartStore } from "@/store/cart.store";
 
 const TabBarIcon = ({ focused, icon, title }: any) => (
-  <View className="tab-icon relative">
+  <View className="tab-icon">
     <Image
       source={icon}
       className="size-7"
@@ -58,6 +58,7 @@ const _layout = () => {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon title="Home" icon={images.home} focused={focused} />
           ),
+          animation: "shift",
         }}
       />
       <Tabs.Screen
@@ -71,6 +72,14 @@ const _layout = () => {
               focused={focused}
             />
           ),
+
+          animation: "shift",
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            router.replace("/search");
+          },
         }}
       />
       <Tabs.Screen
@@ -87,6 +96,7 @@ const _layout = () => {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
           ),
+          animation: "shift",
         }}
       />
       <Tabs.Screen
@@ -96,6 +106,7 @@ const _layout = () => {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon title="Profile" icon={images.user} focused={focused} />
           ),
+          animation: "shift",
           // href: null, // to hide this tab switch
         }}
       />
