@@ -119,7 +119,7 @@ const checkout = () => {
           ListFooterComponent={() =>
             totalItems > 0 && (
               <View className="gap-5 ">
-                <View className="mt-6 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
+                <View className="mt-2 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
                   <Text className="h3-bold text-dark-100 mb-5">
                     Choose Delivery Address
                   </Text>
@@ -135,7 +135,7 @@ const checkout = () => {
                   </View>
                 </View>
 
-                <View className="mt-6 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
+                <View className="mt-2 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
                   <Text className="h3-bold text-dark-100 mb-5">
                     Payment Summary
                   </Text>
@@ -158,7 +158,7 @@ const checkout = () => {
                   />
                 </View>
 
-                <View className="mt-6 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
+                <View className="mt-2 bg-white p-5 rounded-2xl shadow-md shadow-dark-100/30">
                   <Text className="h3-bold text-dark-100 mb-5">
                     Choose Payment Method
                   </Text>
